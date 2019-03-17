@@ -7,7 +7,7 @@ module.exports = merge(common, {
     devServer: {
         hot: true,
         historyApiFallback: {
-            index: './client/public/index.html'
+            index: './client/src/index.html'
         },
         watchContentBase: true,
         compress: true,
