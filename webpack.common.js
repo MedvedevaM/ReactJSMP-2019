@@ -9,7 +9,9 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Production'
+            title: 'My App',
+            filename: 'index.html',
+            template: 'client/public/index.html'
         })
     ],
     output: {

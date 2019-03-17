@@ -6,13 +6,24 @@ module.exports = merge(common, {
     devtool: 'source-map',
     devServer: {
         hot: true,
-        contentBase: [path.join(__dirname, "client/public")],
+        historyApiFallback: {
+            index: './client/public/index.html'
+        },
         watchContentBase: true,
         compress: true,
         proxy: {
             '/api': {
-                target: 'http://localhost:3000',
+                target: `http://localhost:${process.env.PORT || 3000}`,
             },
         }
+    },
+    module: {
+        rules: [{
+            test: /\.css$/,
+            use: [
+                'style-loader',
+                'css-loader',
+            ],
+        }]
     }
 });
