@@ -1,12 +1,21 @@
 const path = require("path");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    devtool: 'source-map',
-    entry: "./client/src/index.js",
+    entry: {
+        app: './client/src/index.js'
+    },
+    plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'Production'
+        })
+    ],
     output: {
-        path: path.resolve(__dirname, 'client/dist'),
-        publicPath: '/dist/',
         filename: 'app.bundle.js',
+        publicPath: '/dist/',
+        path: path.resolve(__dirname, 'client/dist')
     },
     module: {
         rules: [{
@@ -20,11 +29,4 @@ module.exports = {
             }
         }]
     },
-    devServer: {
-        port: 8080,
-        hotOnly: true,
-        contentBase: [path.join(__dirname, "client/public")],
-        watchContentBase: true,
-        compress: true
-    }
 };
