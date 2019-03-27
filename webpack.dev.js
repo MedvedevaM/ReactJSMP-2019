@@ -16,14 +16,5 @@ module.exports = merge(common, {
                 target: `http://localhost:${process.env.PORT || 3000}`,
             },
         }
-    },
-    module: {
-        rules: [{
-            test: /\.css$/,
-            use: [
-                'style-loader',
-                'css-loader',
-            ],
-        }]
     }
 });
