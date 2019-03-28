@@ -1,8 +1,9 @@
 import React from 'react';
+import { RadioButtons } from './RadioButtons.jsx';
 import './../css/font-awesome/css/font-awesome.min.css';
 
 export const FilmSearch = (props) => {
-    const { chosenFilm, onSearchModeClick, onSearchParameterButtonClick, searchBy } = props;
+    const { chosenFilm, onSearchModeClick, onSearchParameterClick, searchBy } = props;
     if (chosenFilm) {
         const release_year = chosenFilm.release_date ? chosenFilm.release_date.slice(0, 4) : null;
         return (
@@ -13,7 +14,7 @@ export const FilmSearch = (props) => {
                         <button onClick={onSearchModeClick} className='search-button-default-mode bold'>Search</button>
                     </div>
                     <div className='chosen-film flex'>
-                        <img src={chosenFilm.poster_path} />
+                        <img src={chosenFilm.poster_path} alt={chosenFilm.title} />
                         <section>
                             <div className='flex'>
                                 <h1>{chosenFilm.title}</h1>
@@ -32,23 +33,23 @@ export const FilmSearch = (props) => {
         )
     }
 
-    const chosenParameter = 'search-parameters uppercase bold chosen-parameter';
-    const notChosenParameter = 'search-parameters uppercase bold';
+    const searchParameters = ["Title", "Genre"];
     return (
-        <header id='home' className="header-bg">
-            <div className="transparent-black-header-bg">
-                <div className="container">
-                    <a href='#home' className='logo'>netflixroulette</a>
-                    <h1>Find your movie</h1>
-                    <input className='search-input' type='text' value={props.value} onChange={props.searchFilms}></input>
-                    <i className="fa fa-search search-input-enter" aria-hidden="true"></i>
-                    <div className='flex search-parameters' onClick={onSearchParameterButtonClick}>
-                        <p>Search by</p>
-                        <button id='Title' className={searchBy === 'Title' ? chosenParameter : notChosenParameter}>Title</button>
-                        <button id='Genre' className={searchBy === 'Genre' ? chosenParameter : notChosenParameter}>Genre</button>
-                    </div>
-                </div>
+      <header id="home" className="header-bg">
+        <div className="transparent-black-header-bg">
+          <div className="container">
+            <a href="#home" className="logo">
+              netflixroulette
+            </a>
+            <h1>Find your movie</h1>
+            <input className="search-input" type="text" value={props.value} onChange={props.searchFilms} />
+            <i className="fa fa-search search-input-enter" aria-hidden="true"/>
+            <div className="flex search-parameters" onClick={onSearchParameterClick}>
+                <p>Search by</p>
+                <RadioButtons searchBy={searchBy} parameters={searchParameters}/>
             </div>
-        </header>
-    )
+          </div>
+        </div>
+      </header>
+    );
 };

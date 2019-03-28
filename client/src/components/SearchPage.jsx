@@ -21,8 +21,8 @@ export class SearchPage extends Component {
         });
     }
 
-    onSearchParameterButtonClick = (event) => {
-        if (event.target.tagName === 'BUTTON' && event.target.id) {
+    onSearchParameterClick = (event) => {
+        if (event.target.id) {
             this.setState({
                 searchBy: event.target.id
             });
@@ -38,10 +38,12 @@ export class SearchPage extends Component {
     }
 
     chooseFilm = (event) => {
-        if (event.target.id) {
-            this.setState({
-                chosenFilm: this.state.films.find((film) => film.id == event.target.id)
-            });
+        if (event.target.id && (event.target.tagName === "IMG" ||  event.target.tagName === "H3")) {
+          this.setState({
+            chosenFilm: this.state.films.find(
+              film => film.id == event.target.id
+            )
+          });
         }
     }
     componentDidMount() {
@@ -65,7 +67,7 @@ export class SearchPage extends Component {
                 <FilmSearch {...this.state} 
                     searchFilms={this.searchFilms} 
                     onSearchModeClick={this.onSearchModeClick} 
-                    onSearchParameterButtonClick={this.onSearchParameterButtonClick} />
+                    onSearchParameterClick={this.onSearchParameterClick} />
                 <FilmsContainer {...this.state}
                     chooseFilm={this.chooseFilm}
                     onSortParameterClick={this.onSortParameterClick} />

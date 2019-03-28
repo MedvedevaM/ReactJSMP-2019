@@ -1,6 +1,7 @@
 import React from 'react';
 import { Film } from './Film.jsx';
 import { Genre } from './Genre.jsx';
+import { RadioTitles } from "./RadioTitles.jsx";
 
 export const FilmsContainer = (props) => {
     const { films, quantityOfFilms, chooseFilm, chosenFilm, sortBy, onSortParameterClick } = props;
@@ -21,17 +22,17 @@ export const FilmsContainer = (props) => {
         )
     }
 
+    const sortParameters = ["rating", "release date"];
     const formattedFilms = films.map((film) => <Film key={film.id} chooseFilm={chooseFilm} {...film} />);
     return (
         <>
             <div className='search-results'>
                 <div className='container flex'>
                     <p>{quantityOfFilms} movies found</p>
-                    <ul onClick={onSortParameterClick} className='flex filter'>
-                        Sort by
-                        <li id='release date' className={sortBy === 'release date' ? 'chosen-sort-parameter' : ''}>release date</li>
-                        <li id='rating' className={sortBy === 'rating' ? 'chosen-sort-parameter' : ''}>rating</li>
-                    </ul>
+                    <div onClick={onSortParameterClick} className='flex filter'>
+                        <p>Sort by</p>
+                        {/* <RadioTitles sortBy={sortBy} parameters={sortParameters} /> */}
+                    </div>
                 </div>
             </div>
             <div onClick={chooseFilm} className='flex films-container'>{formattedFilms}</div>
@@ -42,14 +43,7 @@ export const FilmsContainer = (props) => {
 function filterFilmsByGenre(films, neededGenres) {
     return films.filter(film => {
         return film.genres.some(genre => {
-            let isSuitableGenre = false;
-            neededGenres.forEach(neededGenre => {
-                if (genre === neededGenre) {
-                    isSuitableGenre = true;
-                    return false;
-                }
-            });
-            return isSuitableGenre;
-        })
-    })
+            return neededGenres.some(neededGenre => genre === neededGenre);
+        });
+    });
 }
