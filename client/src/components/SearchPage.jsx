@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { FilmsContainer } from './FilmsContainer.jsx';
 import { FilmSearch } from './FilmSearch.jsx';
 
+const DEFAULT_SEARCH_PARAMETER = "Title";
+const DEFAULT_SORT_PARAMETER = "rating";
+
 export class SearchPage extends Component {
     state = {
         films: [],
         quantityOfFilms: 0,
         chosenFilm: null,
-        searchBy: 'Title',
-        sortBy: 'rating'
+        searchBy: DEFAULT_SEARCH_PARAMETER,
+        sortBy: DEFAULT_SORT_PARAMETER
     }
     
     searchFilms = () => {
@@ -26,15 +29,17 @@ export class SearchPage extends Component {
             this.setState({
                 searchBy: event.target.id
             });
-        }; 
+        };
+        console.log(this.state.searchBy) 
     }
 
     onSortParameterClick = (event) => {
-        if (event.target.tagName === 'LI' && event.target.id) {
+        if (event.target.tagName === "LI" && event.target.id) {
             this.setState({
                 sortBy: event.target.id
             });
-        }; 
+        };
+        console.log(this.state.sortBy); 
     }
 
     chooseFilm = (event) => {

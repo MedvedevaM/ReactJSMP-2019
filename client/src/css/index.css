@@ -113,26 +113,35 @@ h1 {
 
 .search-parameters {
     color: #fffafa;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .search-parameters p {
-    margin-top: 0.28rem;
+    margin-top: 0.8rem;
 }
 
-.search-parameters button {
+.search-parameters label {
+    display: inline-block;
     width: 6rem;
     height: 2rem;
-    margin-left: 1rem; 
+    margin: 0 0 1rem 1rem; 
     border-radius: 2px;
     background-color: #4d4d4d;
-    margin-bottom: 2rem;
+    text-align: center;
+    padding-top: 0.8rem;
+    cursor: pointer;
 }
 
-.search-parameters button.chosen-parameter {
+.search-parameters input {
+    position: absolute;
+    clip: rect(0 0 0 0);
+}
+
+.search-parameters input:checked+label {
     background-color: #ff335c;
 }
 
-.chosen-sort-parameter {
+.sort-parameters input:checked+label {
     color: #ff335c;
 }
 
@@ -167,7 +176,7 @@ h1 {
     font-size: 1.2rem;
 }
 
-.filter li {
+.filter label {
     margin-left: 1rem;
     cursor: pointer;
 }
@@ -187,6 +196,7 @@ h1 {
     width: 20rem;
     height: 30rem;
     object-fit: fill;
+    cursor: pointer;
 }
 
 .film h3 {

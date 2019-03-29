@@ -5,15 +5,13 @@ export const RadioTitles = props => {
     const formattedInputs = parameters.map(parameter => (
         <>
             <input
-                className="sort-parameters"
                 type="radio"
                 name="parameters"
                 key={parameter}
-                id={parameter}
                 value={parameter}
                 defaultChecked={sortBy === parameter}
             />
-            <label className="sort-parameters uppercase bold" htmlFor={parameter}>{parameter}</label>
+            <label id={parameter} className="uppercase bold" htmlFor={parameter}>{parameter}</label>
         </>
     ));
     return (

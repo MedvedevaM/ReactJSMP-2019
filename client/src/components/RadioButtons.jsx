@@ -8,11 +8,10 @@ export const RadioButtons = props => {
             type="radio"
             name="parameters"
             key={parameter}
-            id={parameter}
             value={parameter}
             defaultChecked={searchBy === parameter}
         />
-        <label className="search-parameters uppercase bold" htmlFor={parameter}>{parameter}</label>
+        <label id={parameter} className="uppercase bold" htmlFor={parameter}>{parameter}</label>
       </>
     ));
     return (
