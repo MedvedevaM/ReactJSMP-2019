@@ -1,5 +1,5 @@
-import React from 'react';
-import { Genre } from './Genre.jsx';
+import React from "react";
+import { Genre } from "./Genre.jsx";
 
 export const Film = (props) => {
     const { poster_path, title, genres, release_date, chooseFilm, id } = props;

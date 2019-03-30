@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { FilmsContainer } from './FilmsContainer.jsx';
-import { FilmSearch } from './FilmSearch.jsx';
+import React, { Component } from "react";
+import { FilmsContainer } from "./FilmsContainer.jsx";
+import { FilmSearch } from "./FilmSearch.jsx";
 
 const DEFAULT_SEARCH_PARAMETER = "Title";
-const DEFAULT_SORT_PARAMETER = "rating";
+const DEFAULT_SORT_PARAMETER = "release date";
 
 export class SearchPage extends Component {
     state = {
@@ -30,16 +30,15 @@ export class SearchPage extends Component {
                 searchBy: event.target.id
             });
         };
-        console.log(this.state.searchBy) 
     }
 
     onSortParameterClick = (event) => {
-        if (event.target.tagName === "LI" && event.target.id) {
+        if (event.target.id) {
             this.setState({
                 sortBy: event.target.id
             });
         };
-        console.log(this.state.sortBy); 
+        
     }
 
     chooseFilm = (event) => {
@@ -52,13 +51,13 @@ export class SearchPage extends Component {
         }
     }
     componentDidMount() {
-        fetch('http://reactjs-cdp.herokuapp.com/movies',
+        fetch("http://reactjs-cdp.herokuapp.com/movies",
             {
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
                 },
-                method: 'GET'
+                method: "GET"
             })
             .then(response => response.json())
             .then((result) => this.setState({ 
@@ -78,7 +77,7 @@ export class SearchPage extends Component {
                     onSortParameterClick={this.onSortParameterClick} />
                 <footer>
                     <div>
-                        <p className='logo'>netflixroulette</p>
+                        <p className="logo common-color-1">netflixroulette</p>
                     </div>
                 </footer>
             </>
