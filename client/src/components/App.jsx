@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
-import { FunctionalComponent } from './FunctionalComponent.jsx';
-import { Element } from './ReactCreateElement.jsx';
-import ReactComponent from './ReactComponent.jsx';
-import ReactPureComponent from './ReactPureComponent.jsx';
+import { SearchPage } from './SearchPage.jsx';
+import { ErrorBoundary } from './ErrorBoundary.jsx';
 
 class App extends Component {
     render() {
         return (
-            <>
-                <h1>My React App</h1>
-                <FunctionalComponent />
-                <Element />
-                <ReactComponent />
-                <ReactPureComponent />
-            </>
+            <ErrorBoundary>
+                <SearchPage />
+            </ErrorBoundary>
         );
     }
 }
