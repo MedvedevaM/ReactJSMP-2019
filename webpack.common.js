@@ -4,14 +4,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: './client/src/index.js'
+        app: './client/src/main/index.js'
     },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'My App',
             filename: 'index.html',
-            template: 'client/src/index.html'
+            template: 'client/src/main/index.html'
         })
     ],
     output: {

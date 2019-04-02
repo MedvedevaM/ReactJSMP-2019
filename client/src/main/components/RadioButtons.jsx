@@ -5,7 +5,7 @@ export const RadioButtons = props => {
     const formattedInputs = parameters.map(parameter => (
       <React.Fragment key={`containerOf${parameter}SortParameter`}>
         <input
-            id={parameter}
+            data-parameter={parameter}
             type="radio"
             name="parameters"
             key={parameter}

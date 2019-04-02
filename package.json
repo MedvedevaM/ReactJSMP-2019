@@ -7,7 +7,7 @@
     "server": "cd server && nodemon --require @babel/register express.js",
     "start": "webpack-dev-server --mode development --open --config webpack.dev.js",
     "build": "webpack --mode production --config webpack.prod.js",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^2.0.1",
@@ -44,7 +45,9 @@
     "webpack-merge": "^4.2.1"
   },
   "devDependencies": {
-    "eslint": "^5.15.3",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",

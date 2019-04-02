@@ -30,8 +30,8 @@ export const FilmsContainer = (props) => {
                     <div onClick={onSortParameterClick} className="flex sorter">
                         <p>Sort by</p>
                         <ul onClick={onSortParameterClick} className="flex sorter">
-                            <li id="release date" className={sortBy === "release date" ? "chosen-sort-parameter" : ""}>release date</li>
-                            <li id="rating" className={sortBy === "rating" ? "chosen-sort-parameter" : ""}>rating</li>
+                            <li data-sort-parameter="release date" className={sortBy === "release date" ? "chosen-sort-parameter" : ""}>release date</li>
+                            <li data-sort-parameter="rating" className={sortBy === "rating" ? "chosen-sort-parameter" : ""}>rating</li>
                         </ul>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ export const FilmsContainer = (props) => {
     )
 };
 
-function filterFilmsByGenre(films, neededGenres) {
+export function filterFilmsByGenre(films, neededGenres) {
     return films.filter(film => {
         return film.genres.some(genre => {
             return neededGenres.some(neededGenre => genre === neededGenre);
