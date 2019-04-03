@@ -2,7 +2,7 @@ import React from "react";
 import { Genre } from "./Genre.jsx";
 
 export const Film = props => {
-	const { poster_path, title, genres, release_date, chooseFilm, id } = props;
+	const { poster_path, title, genres, release_date, id } = props;
 	const release_year = release_date ? release_date.slice(0, 4) : null;
 	return (
 		<div className="film">

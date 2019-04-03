@@ -1,6 +1,5 @@
 import React from "react";
 import { RadioButtons } from "./RadioButtons.jsx";
-import "./../css/font-awesome/css/font-awesome.min.css";
 
 export const FilmSearch = (props) => {
     const { chosenFilm, onSearchModeClick, onSearchParameterClick, searchBy } = props;
@@ -44,9 +43,9 @@ export const FilmSearch = (props) => {
             <h1>Find your movie</h1>
             <input className="search-input" type="text" value={props.value} onChange={props.searchFilms} />
             <i className="fa fa-search search-input-enter common-color-1" aria-hidden="true"/>
-            <div className="flex search-parameters" onClick={onSearchParameterClick}>
+            <div className="flex search-parameters">
                 <p>Search by</p>
-                <RadioButtons searchBy={searchBy} parameters={searchParameters}/>
+                <RadioButtons onClick={onSearchParameterClick} searchBy={searchBy} parameters={searchParameters}/>
             </div>
           </div>
         </div>

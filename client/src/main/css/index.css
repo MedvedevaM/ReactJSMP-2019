@@ -51,6 +51,11 @@ button {
     color: #ff335c;
 }
 
+.error {
+    color: #6666ff;
+    text-align: center;
+}
+
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
@@ -98,9 +103,12 @@ h1 {
 
 .search-input-enter {
     position: relative;
-    font-size: 2rem;
     top: -3.5rem;
     left: 58rem;
+}
+
+.fa.search-input-enter {
+    font-size: 2rem;
 }
 
 .search-input-enter:hover {
