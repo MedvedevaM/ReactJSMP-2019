@@ -2,7 +2,7 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import toJson from 'enzyme-to-json';
 import App from "../../main/components/App.jsx";
-import { SearchPage } from "../../main/components/SearchPage.jsx";
+import SearchPage from "../../main/components/SearchPage.jsx";
 
 describe("test app", () => {
     it("renders correctly", () => {

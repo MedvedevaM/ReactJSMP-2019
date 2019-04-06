@@ -1,8 +1,10 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import toJson from 'enzyme-to-json';
-import { filterFilmsByGenre, FilmsContainer  } from '../../main/components/FilmsContainer.jsx';
-import { Film } from '../../main/components/Film.jsx';
+import FilmsContainer, {
+	filterFilmsByGenre
+} from '../../main/components/FilmsContainer.jsx';
+import Film from '../../main/components/Film.jsx';
 
 describe("rendering of container with films", () => {
 	const films = [{

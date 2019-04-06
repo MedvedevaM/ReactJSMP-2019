@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount} from "enzyme";
 import toJson from 'enzyme-to-json';
-import { SearchPage } from "../../main/components/SearchPage.jsx";
+import SearchPage from "../../main/components/SearchPage.jsx";
 
 describe("search page rendering and functionality", () => {
     it("check radio buttons rendering", () => {
