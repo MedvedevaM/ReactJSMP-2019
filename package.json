@@ -59,5 +59,13 @@
     "react-test-renderer": "^16.8.6",
     "style-loader": "^0.23.1",
     "whatwg-fetch": "^3.0.0"
+  },
+  "jest": {
+    "verbose": true,
+    "setupFiles": ["./jest.setup.js"],
+    "collectCoverageFrom": [
+      "client/src/main/components/**/*.{js,jsx}"
+    ]
+
   }
 }

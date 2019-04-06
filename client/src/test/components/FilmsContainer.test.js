@@ -1,11 +1,8 @@
 import React from "react";
-import { shallow, configure, mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow, mount } from "enzyme";
 import toJson from 'enzyme-to-json';
 import { filterFilmsByGenre, FilmsContainer  } from '../../main/components/FilmsContainer.jsx';
 import { Film } from '../../main/components/Film.jsx';
-
-configure({ adapter: new Adapter() });
 
 describe("rendering of container with films", () => {
 	const films = [{
@@ -66,7 +63,7 @@ describe("rendering of container with films", () => {
 		id: 97630,
 		overview: "A chronicle of the decade-long hunt for al-Qaeda terrorist leader Osama bin Laden after the September 2001 attacks, and his death at the hands of the Navy S.E.A.L. Team 6 in May, 2011.",
 		poster_path: "https://image.tmdb.org/t/p/w500/yg6IDNucLAEj7E5loTyTnUW2pgb.jpg",
-		release_date: "2012-12-19",
+		release_date: "",
 		revenue: 132820716,
 		runtime: 157,
 		tagline: "The Greatest Manhunt in History",
@@ -83,7 +80,7 @@ describe("rendering of container with films", () => {
 		poster_path: "https://image.tmdb.org/t/p/w500/yg6IDNucLAEj7E5loTyTnUW2pgb.jpg",
 		release_date: "2012-12-19",
 		revenue: 132820716,
-		runtime: 157,
+		runtime: null,
 		tagline: "The Greatest Manhunt in History",
 		title: "Zero Dark Thirty",
 		vote_average: 6.7,

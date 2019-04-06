@@ -1,10 +1,7 @@
 import React from "react";
-import { shallow, configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 import toJson from 'enzyme-to-json';
 import { RadioButtons } from "../../main/components/RadioButtons.jsx";
-
-configure({ adapter: new Adapter() });
 
 const parameters = ["first_parameter", "second_parameter", "third_parameter"];
 

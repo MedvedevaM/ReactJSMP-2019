@@ -1,11 +1,8 @@
 import React from "react";
-import { shallow, configure, mount} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import { fetch } from 'whatwg-fetch';
+import { shallow, mount} from "enzyme";
 import toJson from 'enzyme-to-json';
 import { SearchPage } from "../../main/components/SearchPage.jsx";
 
-configure({ adapter: new Adapter() });
 describe("search page rendering and functionality", () => {
     it("check radio buttons rendering", () => {
         const searchPage = shallow( <SearchPage /> );
@@ -51,11 +48,27 @@ describe("search page rendering and functionality", () => {
                 searchPage.instance().onSortParameterClick({
                     target: {
                         dataset: {
+                            sortParameter: ""
+                        }
+                    }
+                });
+                expect(searchPage.state().sortBy).toEqual("release date");
+                searchPage.instance().onSortParameterClick({
+                    target: {
+                        dataset: {
                             sortParameter: "rating"
                         }
                     }
                 });
                 expect(searchPage.state().sortBy).toEqual("rating");
+                searchPage.instance().onSearchParameterClick({
+                    target: {
+                        dataset: {
+                            parameter: ""
+                        }
+                    }
+                });
+                expect(searchPage.state().searchBy).toEqual("Title");
                 searchPage.instance().onSearchParameterClick({
                     target: {
                         dataset: {
@@ -67,6 +80,14 @@ describe("search page rendering and functionality", () => {
                 searchPage.instance().onSearchModeClick();
                 expect(searchPage.state().chosenFilm).toEqual(null);
                 expect(searchPage.state().sortBy).toEqual("rating");
+                searchPage.instance().chooseFilm({
+                    target: {
+                        dataset: {
+                            filmId: ""
+                        }
+                    }
+                });
+                expect(searchPage.state().chosenFilm).toEqual(null);
                 searchPage.instance().chooseFilm({
                     target: {
                         dataset: {
@@ -85,6 +106,14 @@ describe("search page rendering and functionality", () => {
                     poster_path: "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
                     genres: ['Drama', 'Adventure']
                 });
+                searchPage.instance().chooseFilm({
+                    target: {
+                        dataset: {
+                            filmId: "????"
+                        }
+                    }
+                });
+                expect(searchPage.state().chosenFilm).toEqual(null);
             });
     });
 })
