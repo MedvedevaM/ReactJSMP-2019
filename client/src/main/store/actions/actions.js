@@ -32,7 +32,7 @@ export const setSearchParameter = (searchBy) => {
   }
 }
 
-export const setChosenFilm = (chosenFilm = null) => {
+export const setChosenFilm = (chosenFilm) => {
   return {
     type: SET_CHOSEN_FILM,
     chosenFilm

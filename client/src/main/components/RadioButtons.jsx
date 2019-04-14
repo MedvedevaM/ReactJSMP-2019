@@ -1,7 +1,7 @@
 import React from 'react';
 
 const RadioButtons = (props) => {
-  const { parameters, searchBy } = props;
+  const { parameters, searchBy, onClick } = props;
   const formattedInputs = parameters.map(parameter => (
     <React.Fragment key={`containerOf${parameter}SortParameter`}>
       <input
@@ -11,8 +11,9 @@ const RadioButtons = (props) => {
         key={parameter}
         value={parameter}
         defaultChecked={searchBy === parameter}
+        onClick={onClick}
       />
-      <label className="uppercase bold" htmlFor={parameter}>{parameter}</label>
+      <label data-parameter={parameter} className="uppercase bold" htmlFor={parameter}>{parameter}</label>
     </React.Fragment>
   ));
   return (

@@ -92,13 +92,13 @@ const mapStateToProps = (state) => {
 }
 
 const mapActionsToProps = (dispatch) => {
-  return {
-    getFilms: bindActionCreators(getFilms, dispatch),
-    getQuantityOfFilms: bindActionCreators(getQuantityOfFilms, dispatch),
-    setSearchParameter: bindActionCreators(setSearchParameter, dispatch),
-    setSortParameter: bindActionCreators(setSortParameter, dispatch),
-    setChosenFilm: bindActionCreators(setChosenFilm, dispatch),
-  }
+  return bindActionCreators({
+    getFilms,
+    getQuantityOfFilms,
+    setSearchParameter,
+    setSortParameter,
+    setChosenFilm
+  }, dispatch)
 }
 
 const WrappedSearchPage = connect(mapStateToProps, mapActionsToProps)(SearchPage);

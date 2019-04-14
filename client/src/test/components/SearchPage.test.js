@@ -2,12 +2,16 @@ import React from "react";
 import { shallow, mount} from "enzyme";
 import toJson from 'enzyme-to-json';
 import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { appReducer } from './../../main/store/reducers/reducers';
 import WrappedSearchPage, { SearchPage } from "../../main/components/SearchPage.jsx";
+import { getFilms } from "../../main/store/actions/actions";
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
+const store = createStore(
+    appReducer,
+    applyMiddleware(thunk)
+);
 
 describe("search page rendering and functionality", () => {
     it("check radio buttons rendering", () => {
@@ -45,96 +49,94 @@ describe("search page rendering and functionality", () => {
             json: () => Promise.resolve(mockData),
         }));
 
-        const initialState = {
-            films: [],
-            quantityOfFilms: 0,
-            chosenFilm: null,
-            searchBy: 'Title',
-            sortBy: 'release date',
-        };
-
-        const store = mockStore(initialState);
         const wrappedSearchPage = mount(
             <Provider store={store}>
                 <WrappedSearchPage />
             </Provider>);
-            
-        wrappedSearchPage.update();
+
         const searchPage = wrappedSearchPage.find(SearchPage);
 
-        return searchPage.instance().fetchFilms()
-            .then(() => {
-                expect(searchPage.props()).toEqual(mockData.data);
-                searchPage.instance().onSortParameterClick({
-                    target: {
-                        dataset: {
-                            sortParameter: ""
-                        }
+        function fetchFilms() {
+            return function (dispatch) {
+                return searchPage.instance().fetchFilms().then(
+                    films => dispatch(getFilms(films))
+                );
+            };
+        }
+
+        store.dispatch(
+            fetchFilms()
+        ).then(() => {
+            setTimeout(() => expect(searchPage.props().films).toEqual(mockData.data), 0);
+            searchPage.instance().onSortParameterClick({
+                target: {
+                    dataset: {
+                        sortParameter: ""
                     }
-                });
-                expect(searchPage.props().sortBy).toEqual("release date");
-                searchPage.instance().onSortParameterClick({
-                    target: {
-                        dataset: {
-                            sortParameter: "rating"
-                        }
-                    }
-                });
-                expect(searchPage.props().sortBy).toEqual("rating");
-                searchPage.instance().onSearchParameterClick({
-                    target: {
-                        dataset: {
-                            parameter: ""
-                        }
-                    }
-                });
-                expect(searchPage.props().searchBy).toEqual("Title");
-                searchPage.instance().onSearchParameterClick({
-                    target: {
-                        dataset: {
-                            parameter: "Genre"
-                        }
-                    }
-                });
-                expect(searchPage.props().searchBy).toEqual("Genre");
-                searchPage.instance().onSearchModeClick();
-                expect(searchPage.props().chosenFilm).toEqual(null);
-                expect(searchPage.props().sortBy).toEqual("rating");
-                searchPage.instance().chooseFilm({
-                    target: {
-                        dataset: {
-                            filmId: ""
-                        }
-                    }
-                });
-                expect(searchPage.props().chosenFilm).toEqual(null);
-                searchPage.instance().chooseFilm({
-                    target: {
-                        dataset: {
-                            filmId: 2222
-                        }
-                    }
-                });
-                expect(searchPage.props().chosenFilm).toEqual({
-                    id: 2222,
-                    release_date: "2020-05-01",
-                    title: "Guardians of the Galaxy Vol. 3",
-                    vote_average: 8,
-                    runtime: 100,
-                    tagline: "Tag line",
-                    overview: "The third film based on Marvel's Guardians of the Galaxy.",
-                    poster_path: "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
-                    genres: ['Drama', 'Adventure']
-                });
-                searchPage.instance().chooseFilm({
-                    target: {
-                        dataset: {
-                            filmId: "????"
-                        }
-                    }
-                });
-                expect(searchPage.props().chosenFilm).toEqual(null);
+                }
             });
-        
+            setTimeout(() => expect(searchPage.props().sortBy).toEqual("release date"), 0);
+            searchPage.instance().onSortParameterClick({
+                target: {
+                    dataset: {
+                        sortParameter: "rating"
+                    }
+                }
+            });
+            setTimeout(() => expect(searchPage.props().sortBy).toEqual("rating"), 0);
+            searchPage.instance().onSearchParameterClick({
+                target: {
+                    dataset: {
+                        parameter: ""
+                    }
+                }
+            });
+            expect(searchPage.props().searchBy).toEqual("Title");
+            searchPage.instance().onSearchParameterClick({
+                target: {
+                    dataset: {
+                        parameter: "Genre"
+                    }
+                }
+            });
+            setTimeout(() => expect(searchPage.props().searchBy).toEqual("Genre"), 0);
+            searchPage.instance().onSearchModeClick();
+            expect(searchPage.props().chosenFilm).toEqual(null);
+            setTimeout(() => expect(searchPage.props().sortBy).toEqual("rating"), 0);
+            searchPage.instance().chooseFilm({
+                target: {
+                    dataset: {
+                        filmId: ""
+                    }
+                }
+            });
+            expect(searchPage.props().chosenFilm).toEqual(null);
+            searchPage.instance().chooseFilm({
+                target: {
+                    dataset: {
+                        filmId: 2222
+                    }
+                }
+            });
+            expect(searchPage.props().chosenFilm).toEqual({
+                id: 2222,
+                release_date: "2020-05-01",
+                title: "Guardians of the Galaxy Vol. 3",
+                vote_average: 8,
+                runtime: 100,
+                tagline: "Tag line",
+                overview: "The third film based on Marvel's Guardians of the Galaxy.",
+                poster_path: "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
+                genres: ['Drama', 'Adventure']
+            });
+            searchPage.instance().chooseFilm({
+                target: {
+                    dataset: {
+                        filmId: "????"
+                    }
+                }
+            });
+            expect(searchPage.props().chosenFilm).toEqual(null);
+        });
     });
 })

@@ -15,6 +15,7 @@ Array [
     />
     <label
       className="uppercase bold"
+      data-parameter="first_parameter"
       htmlFor="first_parameter"
     >
       first_parameter
@@ -33,6 +34,7 @@ Array [
     />
     <label
       className="uppercase bold"
+      data-parameter="second_parameter"
       htmlFor="second_parameter"
     >
       second_parameter
@@ -51,6 +53,7 @@ Array [
     />
     <label
       className="uppercase bold"
+      data-parameter="third_parameter"
       htmlFor="third_parameter"
     >
       third_parameter
