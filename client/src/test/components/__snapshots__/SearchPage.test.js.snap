@@ -1,34 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`search page rendering and functionality check radio buttons rendering 1`] = `
-<Fragment>
-  <FilmSearch
-    chosenFilm={null}
-    films={Array []}
-    onSearchModeClick={[Function]}
-    onSearchParameterClick={[Function]}
-    quantityOfFilms={0}
-    searchBy="Title"
-    searchFilms={[Function]}
-    sortBy="release date"
-  />
-  <FilmsContainer
-    chooseFilm={[Function]}
-    chosenFilm={null}
-    films={Array []}
-    onSortParameterClick={[Function]}
-    quantityOfFilms={0}
-    searchBy="Title"
-    sortBy="release date"
-  />
-  <footer>
-    <div>
-      <p
-        className="logo common-color-1"
-      >
-        netflixroulette
-      </p>
-    </div>
-  </footer>
-</Fragment>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;

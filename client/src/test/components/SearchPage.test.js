@@ -1,11 +1,17 @@
 import React from "react";
 import { shallow, mount} from "enzyme";
 import toJson from 'enzyme-to-json';
-import SearchPage from "../../main/components/SearchPage.jsx";
+import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import WrappedSearchPage, { SearchPage } from "../../main/components/SearchPage.jsx";
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe("search page rendering and functionality", () => {
     it("check radio buttons rendering", () => {
-        const searchPage = shallow( <SearchPage /> );
+        const searchPage = shallow(<WrappedSearchPage /> );
         expect(toJson(searchPage)).toMatchSnapshot();
     });
 
@@ -39,12 +45,26 @@ describe("search page rendering and functionality", () => {
             json: () => Promise.resolve(mockData),
         }));
 
-        const searchPage = mount(<SearchPage />);
-        searchPage.update();
+        const initialState = {
+            films: [],
+            quantityOfFilms: 0,
+            chosenFilm: null,
+            searchBy: 'Title',
+            sortBy: 'release date',
+        };
+
+        const store = mockStore(initialState);
+        const wrappedSearchPage = mount(
+            <Provider store={store}>
+                <WrappedSearchPage />
+            </Provider>);
+            
+        wrappedSearchPage.update();
+        const searchPage = wrappedSearchPage.find(SearchPage);
 
         return searchPage.instance().fetchFilms()
             .then(() => {
-                expect(searchPage.state().films).toEqual(mockData.data);
+                expect(searchPage.props()).toEqual(mockData.data);
                 searchPage.instance().onSortParameterClick({
                     target: {
                         dataset: {
@@ -52,7 +72,7 @@ describe("search page rendering and functionality", () => {
                         }
                     }
                 });
-                expect(searchPage.state().sortBy).toEqual("release date");
+                expect(searchPage.props().sortBy).toEqual("release date");
                 searchPage.instance().onSortParameterClick({
                     target: {
                         dataset: {
@@ -60,7 +80,7 @@ describe("search page rendering and functionality", () => {
                         }
                     }
                 });
-                expect(searchPage.state().sortBy).toEqual("rating");
+                expect(searchPage.props().sortBy).toEqual("rating");
                 searchPage.instance().onSearchParameterClick({
                     target: {
                         dataset: {
@@ -68,7 +88,7 @@ describe("search page rendering and functionality", () => {
                         }
                     }
                 });
-                expect(searchPage.state().searchBy).toEqual("Title");
+                expect(searchPage.props().searchBy).toEqual("Title");
                 searchPage.instance().onSearchParameterClick({
                     target: {
                         dataset: {
@@ -76,10 +96,10 @@ describe("search page rendering and functionality", () => {
                         }
                     }
                 });
-                expect(searchPage.state().searchBy).toEqual("Genre");
+                expect(searchPage.props().searchBy).toEqual("Genre");
                 searchPage.instance().onSearchModeClick();
-                expect(searchPage.state().chosenFilm).toEqual(null);
-                expect(searchPage.state().sortBy).toEqual("rating");
+                expect(searchPage.props().chosenFilm).toEqual(null);
+                expect(searchPage.props().sortBy).toEqual("rating");
                 searchPage.instance().chooseFilm({
                     target: {
                         dataset: {
@@ -87,7 +107,7 @@ describe("search page rendering and functionality", () => {
                         }
                     }
                 });
-                expect(searchPage.state().chosenFilm).toEqual(null);
+                expect(searchPage.props().chosenFilm).toEqual(null);
                 searchPage.instance().chooseFilm({
                     target: {
                         dataset: {
@@ -95,7 +115,7 @@ describe("search page rendering and functionality", () => {
                         }
                     }
                 });
-                expect(searchPage.state().chosenFilm).toEqual({
+                expect(searchPage.props().chosenFilm).toEqual({
                     id: 2222,
                     release_date: "2020-05-01",
                     title: "Guardians of the Galaxy Vol. 3",
@@ -113,7 +133,8 @@ describe("search page rendering and functionality", () => {
                         }
                     }
                 });
-                expect(searchPage.state().chosenFilm).toEqual(null);
+                expect(searchPage.props().chosenFilm).toEqual(null);
             });
+        
     });
 })

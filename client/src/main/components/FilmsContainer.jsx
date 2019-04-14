@@ -4,7 +4,7 @@ import Genre from "./Genre.jsx";
 
 const FilmsContainer = (props) => {
   const { films, quantityOfFilms, chooseFilm, chosenFilm, sortBy, onSortParameterClick } = props;
-  if (chosenFilm) {
+  if (chosenFilm && films) {
     const formattedFilms = filterFilmsByGenre(films, chosenFilm.genres).map((film) => <Film key={film.id} chooseFilm={chooseFilm} {...film} />);
     return (
       <>
@@ -21,7 +21,7 @@ const FilmsContainer = (props) => {
     )
   }
 
-  const formattedFilms = films.map((film) => <Film key={film.id} chooseFilm={chooseFilm} {...film} />);
+  const formattedFilms = films ? films.map((film) => <Film key={film.id} chooseFilm={chooseFilm} {...film} />) : null;
   return (
     <>
       <div className="search-results">

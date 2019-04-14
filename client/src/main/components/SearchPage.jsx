@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getFilms, getQuantityOfFilms, setSearchParameter, setSortParameter, setChosenFilm } from './../store/actions/actions';
 import FilmsContainer from './FilmsContainer.jsx';
 import FilmSearch from './FilmSearch.jsx';
 
-const DEFAULT_SEARCH_PARAMETER = 'Title';
-const DEFAULT_SORT_PARAMETER = 'release date';
-
-export default class SearchPage extends Component {
-  state = {
-    films: [],
-    quantityOfFilms: 0,
-    chosenFilm: null,
-    searchBy: DEFAULT_SEARCH_PARAMETER,
-    sortBy: DEFAULT_SORT_PARAMETER,
-  }
-
+export class SearchPage extends Component {
   componentDidMount() {
     this.fetchFilms();
   }
 
-  fetchFilms = () => fetch('http://reactjs-cdp.herokuapp.com/movies', {
+  fetchFilms = () => {
+    const { getFilms, getQuantityOfFilms } = this.props;
+    return fetch('http://reactjs-cdp.herokuapp.com/movies', {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -26,43 +20,40 @@ export default class SearchPage extends Component {
     method: 'GET',
   })
     .then(response => response.json())
-    .then(result => this.setState({
-      films: result.data,
-      quantityOfFilms: result.data.length,
-    }))
+    .then(result => {
+      getFilms(result.data);
+      getQuantityOfFilms(result.data.length);
+    })
+  }
 
   searchFilms = () => { };
 
   onSearchModeClick = () => {
-    this.setState({
-      chosenFilm: null,
-    });
+    const { setChosenFilm } = this.props;
+    setChosenFilm(null);
   }
 
   onSearchParameterClick = (event) => {
+    const { setSearchParameter } = this.props;
     const searchParameter = event.target.dataset.parameter;
     if (searchParameter) {
-      this.setState({
-        searchBy: searchParameter,
-      });
+      setSearchParameter(searchParameter);
     }
   }
 
   onSortParameterClick = (event) => {
-    const { sortParameter } = event.target.dataset;
+    const { setSortParameter } = this.props;
+    const sortParameter = event.target.dataset.sortParameter;
     if (sortParameter) {
-      this.setState({
-        sortBy: sortParameter,
-      });
+      setSortParameter(sortParameter);
     }
   }
 
   chooseFilm = (event) => {
+    const { setChosenFilm, films } = this.props;
     const chosenFilm = event.target.dataset.filmId;
     if (chosenFilm) {
-      this.setState({
-        chosenFilm: this.state.films.find(film => film.id == chosenFilm) || null,
-      });
+      setChosenFilm(films.find(film => film.id == chosenFilm));
     }
   }
 
@@ -70,13 +61,13 @@ export default class SearchPage extends Component {
     return (
       <>
         <FilmSearch
-          {...this.state}
+          {...this.props}
           searchFilms={this.searchFilms}
           onSearchModeClick={this.onSearchModeClick}
           onSearchParameterClick={this.onSearchParameterClick}
         />
         <FilmsContainer
-          {...this.state}
+          {...this.props}
           chooseFilm={this.chooseFilm}
           onSortParameterClick={this.onSortParameterClick}
         />
@@ -89,3 +80,26 @@ export default class SearchPage extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    films: state.films.films,
+    quantityOfFilms: state.films.quantityOfFilms,
+    chosenFilm: state.films.chosenFilm,
+    searchBy: state.films.searchBy,
+    sortBy: state.films.sortBy,
+  }
+}
+
+const mapActionsToProps = (dispatch) => {
+  return {
+    getFilms: bindActionCreators(getFilms, dispatch),
+    getQuantityOfFilms: bindActionCreators(getQuantityOfFilms, dispatch),
+    setSearchParameter: bindActionCreators(setSearchParameter, dispatch),
+    setSortParameter: bindActionCreators(setSortParameter, dispatch),
+    setChosenFilm: bindActionCreators(setChosenFilm, dispatch),
+  }
+}
+
+const WrappedSearchPage = connect(mapStateToProps, mapActionsToProps)(SearchPage);
+export default WrappedSearchPage;
