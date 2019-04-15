@@ -1,11 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { appReducer } from './../store/reducers/reducers';
 import SearchPage from './SearchPage.jsx';
 import ErrorBoundary from './ErrorBoundary.jsx';
 
-const store = createStore(appReducer);
+const store = createStore(appReducer, applyMiddleware(thunk));
 
 const App = () => (
   <Provider store={store}>

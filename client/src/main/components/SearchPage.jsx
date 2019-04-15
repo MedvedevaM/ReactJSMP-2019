@@ -1,29 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getFilms, getQuantityOfFilms, setSearchParameter, setSortParameter, setChosenFilm } from './../store/actions/actions';
+import { setSearchParameter, setSortParameter, setChosenFilm, fetchFilms } from './../store/actions/actions';
 import FilmsContainer from './FilmsContainer.jsx';
 import FilmSearch from './FilmSearch.jsx';
 
 export class SearchPage extends Component {
   componentDidMount() {
-    this.fetchFilms();
-  }
-
-  fetchFilms = () => {
-    const { getFilms, getQuantityOfFilms } = this.props;
-    return fetch('http://reactjs-cdp.herokuapp.com/movies', {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'GET',
-  })
-    .then(response => response.json())
-    .then(result => {
-      getFilms(result.data);
-      getQuantityOfFilms(result.data.length);
-    })
+    this.props.fetchFilms('http://reactjs-cdp.herokuapp.com/movies');
   }
 
   searchFilms = () => { };
@@ -51,9 +34,10 @@ export class SearchPage extends Component {
 
   chooseFilm = (event) => {
     const { setChosenFilm, films } = this.props;
-    const chosenFilm = event.target.dataset.filmId;
-    if (chosenFilm) {
-      setChosenFilm(films.find(film => film.id == chosenFilm));
+    const chosenFilmId = event.target.dataset.filmId;
+    if (chosenFilmId) {
+      const chosenFilm = films.find(film => film.id === +chosenFilmId);
+      setChosenFilm(chosenFilm);
     }
   }
 
@@ -91,15 +75,14 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapActionsToProps = (dispatch) => {
-  return bindActionCreators({
-    getFilms,
-    getQuantityOfFilms,
-    setSearchParameter,
-    setSortParameter,
-    setChosenFilm
-  }, dispatch)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setSearchParameter: (parameter) => dispatch(setSearchParameter(parameter)),
+    setSortParameter: (parameter) => dispatch(setSortParameter(parameter)),
+    setChosenFilm: (film) => dispatch(setChosenFilm(film)),
+    fetchFilms: (url) => dispatch(fetchFilms(url))
+  }
 }
 
-const WrappedSearchPage = connect(mapStateToProps, mapActionsToProps)(SearchPage);
+const WrappedSearchPage = connect(mapStateToProps, mapDispatchToProps)(SearchPage);
 export default WrappedSearchPage;

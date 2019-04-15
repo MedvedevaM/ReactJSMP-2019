@@ -39,3 +39,14 @@ export const setChosenFilm = (chosenFilm) => {
   }
 }
 
+export function fetchFilms(url) {
+  return (dispatch) => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((films) => {
+        dispatch(getFilms(films.data));
+        dispatch(getQuantityOfFilms(films.data.length));
+      });
+  };
+}
+
