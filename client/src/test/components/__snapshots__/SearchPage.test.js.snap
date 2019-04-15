@@ -1,7 +1,136 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`search page rendering and functionality check radio buttons rendering 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<Fragment>
+  <FilmSearch
+    chosenFilm={null}
+    fetchFilms={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            "http://reactjs-cdp.herokuapp.com/movies",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    films={
+      Array [
+        Object {
+          "genres": Array [
+            "Drama",
+            "Adventure",
+          ],
+          "id": 1111,
+          "overview": "The third film based on Marvel's Guardians of the Galaxy.",
+          "poster_path": "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
+          "release_date": "2020-05-01",
+          "runtime": 100,
+          "tagline": "Tag line",
+          "title": "Guardians of the Galaxy Vol. 3",
+          "vote_average": 8,
+        },
+        Object {
+          "genres": Array [
+            "Drama",
+            "Adventure",
+          ],
+          "id": 2222,
+          "overview": "The third film based on Marvel's Guardians of the Galaxy.",
+          "poster_path": "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
+          "release_date": "2020-05-01",
+          "runtime": 100,
+          "tagline": "Tag line",
+          "title": "Guardians of the Galaxy Vol. 3",
+          "vote_average": 8,
+        },
+      ]
+    }
+    getSortedFilms={[MockFunction]}
+    onSearchModeClick={[Function]}
+    onSearchParameterClick={[Function]}
+    quantityOfFilms={2}
+    searchBy="Title"
+    searchFilms={[Function]}
+    searchParameter={[MockFunction]}
+    setChosenFilm={[MockFunction]}
+    setSearchParameter={[MockFunction]}
+    setSortParameter={[MockFunction]}
+    sortBy="release date"
+  />
+  <Connect(FilmsContainer)
+    chooseFilm={[Function]}
+    chosenFilm={null}
+    fetchFilms={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            "http://reactjs-cdp.herokuapp.com/movies",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    films={
+      Array [
+        Object {
+          "genres": Array [
+            "Drama",
+            "Adventure",
+          ],
+          "id": 1111,
+          "overview": "The third film based on Marvel's Guardians of the Galaxy.",
+          "poster_path": "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
+          "release_date": "2020-05-01",
+          "runtime": 100,
+          "tagline": "Tag line",
+          "title": "Guardians of the Galaxy Vol. 3",
+          "vote_average": 8,
+        },
+        Object {
+          "genres": Array [
+            "Drama",
+            "Adventure",
+          ],
+          "id": 2222,
+          "overview": "The third film based on Marvel's Guardians of the Galaxy.",
+          "poster_path": "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
+          "release_date": "2020-05-01",
+          "runtime": 100,
+          "tagline": "Tag line",
+          "title": "Guardians of the Galaxy Vol. 3",
+          "vote_average": 8,
+        },
+      ]
+    }
+    getSortedFilms={[MockFunction]}
+    onSortParameterClick={[Function]}
+    quantityOfFilms={2}
+    searchBy="Title"
+    searchParameter={[MockFunction]}
+    setChosenFilm={[MockFunction]}
+    setSearchParameter={[MockFunction]}
+    setSortParameter={[MockFunction]}
+    sortBy="release date"
+  />
+  <footer>
+    <div>
+      <p
+        className="logo common-color-1"
+      >
+        netflixroulette
+      </p>
+    </div>
+  </footer>
+</Fragment>
 `;

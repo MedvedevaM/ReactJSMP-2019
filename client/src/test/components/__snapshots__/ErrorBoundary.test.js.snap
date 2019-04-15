@@ -1,3 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`has an error 1`] = `
+<h1
+  className="error"
+>
+  Something went wrong.
+</h1>
+`;
+
 exports[`renders correctly 1`] = `""`;

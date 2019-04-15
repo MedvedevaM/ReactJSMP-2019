@@ -1,7 +1,7 @@
 import React from "react";
 import RadioButtons from "./RadioButtons.jsx";
 
-const FilmSearch = (props) => {
+export const FilmSearch = (props) => {
   const { chosenFilm, onSearchModeClick, onSearchParameterClick, searchBy } = props;
   if (chosenFilm) {
     const release_year = chosenFilm.release_date ? chosenFilm.release_date.slice(0, 4) : null;

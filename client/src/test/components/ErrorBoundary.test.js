@@ -7,3 +7,9 @@ it("renders correctly", () => {
     const error = shallow(<ErrorBoundary />);
     expect(toJson(error)).toMatchSnapshot();
 });
+
+it("has an error", () => {
+    const error = shallow(<ErrorBoundary />);
+    error.setState({ hasError: true });
+    expect(toJson(error)).toMatchSnapshot();
+});

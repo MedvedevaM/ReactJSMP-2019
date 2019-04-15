@@ -26,7 +26,7 @@ export class SearchPage extends Component {
   }
 
   onSortParameterClick = (event) => {
-    const { setSortParameter } = this.props;
+    const { setSortParameter, films } = this.props;
     const sortParameter = event.target.dataset.sortParameter;
     if (sortParameter) {
       setSortParameter(sortParameter);
@@ -67,7 +67,7 @@ export class SearchPage extends Component {
   }
 }
 
-const mapStateToProps = (store) => {
+export const mapStateToProps = (store) => {
   return {
     films: getFilms(store),
     quantityOfFilms: getFilmsQuantity(store),
@@ -77,7 +77,7 @@ const mapStateToProps = (store) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return {
     setSearchParameter: (parameter) => dispatch(setSearchParameter(parameter)),
     setSortParameter: (parameter) => dispatch(setSortParameter(parameter)),

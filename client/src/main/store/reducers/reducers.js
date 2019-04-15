@@ -33,13 +33,13 @@ export function getSortParameter(store) {
 }
 
 export function getFilteredFilms(store) {
-    if (store.films.chosenFilm) {
+    if (store.films && store.films.chosenFilm) {
         return filterFilmsByGenre(store.films.films, store.films.chosenFilm.genres);
     }
     return [];
 }
 
-function filterFilmsByGenre(films, neededGenres) {
+export function filterFilmsByGenre(films, neededGenres) {
     return films.filter(film => {
         return film.genres.some(genre => {
             return neededGenres.some(neededGenre => genre === neededGenre);
