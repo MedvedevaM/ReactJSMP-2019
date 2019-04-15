@@ -39,6 +39,8 @@ export const setChosenFilm = (chosenFilm) => {
   }
 }
 
+// middlewares
+
 export function fetchFilms(url) {
   return (dispatch) => {
     fetch(url)
@@ -47,6 +49,18 @@ export function fetchFilms(url) {
         dispatch(getFilms(films.data));
         dispatch(getQuantityOfFilms(films.data.length));
       });
+  };
+}
+
+export function getSortedFilms(films, parameter) {
+  return (dispatch) => {
+    if (parameter === "rating") {
+      films = films.sort((a, b) => a.vote_average - b.vote_average);
+    }
+    if (parameter === "release date") {
+      films = films.sort((a, b) => a.release_date.slice(0, 4) - b.release_date.slice(0, 4));
+    }
+    dispatch(getFilms(films));
   };
 }
 

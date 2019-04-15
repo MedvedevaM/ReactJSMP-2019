@@ -1,11 +1,13 @@
 import React from "react";
+import { connect } from 'react-redux'
 import Film from "./Film.jsx";
 import Genre from "./Genre.jsx";
+import { getFilteredFilms } from './../store/reducers/reducers';
 
 const FilmsContainer = (props) => {
-  const { films, quantityOfFilms, chooseFilm, chosenFilm, sortBy, onSortParameterClick } = props;
+  const { films, quantityOfFilms, chooseFilm, chosenFilm, sortBy, onSortParameterClick, filteredFilms } = props;
   if (chosenFilm && films) {
-    const formattedFilms = filterFilmsByGenre(films, chosenFilm.genres).map((film) => <Film key={film.id} chooseFilm={chooseFilm} {...film} />);
+    const formattedFilms = filteredFilms.map((film) => <Film key={film.id} chooseFilm={chooseFilm} {...film} />);
     return (
       <>
         <div className="search-results">
@@ -41,12 +43,10 @@ const FilmsContainer = (props) => {
   )
 };
 
-export function filterFilmsByGenre(films, neededGenres) {
-  return films.filter(film => {
-    return film.genres.some(genre => {
-      return neededGenres.some(neededGenre => genre === neededGenre);
-    });
-  });
+function mapStateToProps(store) {
+  return {
+    filteredFilms: getFilteredFilms(store)
+  }
 }
 
-export default FilmsContainer;
+export default connect(mapStateToProps)(FilmsContainer)
