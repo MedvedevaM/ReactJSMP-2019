@@ -30,7 +30,7 @@ export class SearchPage extends Component {
     const sortParameter = event.target.dataset.sortParameter;
     if (sortParameter) {
       setSortParameter(sortParameter);
-      getSortedFilms(searchParameter, films);
+      getSortedFilms(films, sortParameter);
     }
   }
 
@@ -87,5 +87,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const WrappedSearchPage = connect(mapStateToProps, mapDispatchToProps)(SearchPage);
-export default WrappedSearchPage;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
