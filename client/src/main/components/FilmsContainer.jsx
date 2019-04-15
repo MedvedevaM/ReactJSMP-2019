@@ -4,7 +4,7 @@ import Film from "./Film.jsx";
 import Genre from "./Genre.jsx";
 import { getFilteredFilms } from './../store/reducers/reducers';
 
-const FilmsContainer = (props) => {
+export const FilmsContainer = (props) => {
   const { films, quantityOfFilms, chooseFilm, chosenFilm, sortBy, onSortParameterClick, filteredFilms } = props;
   if (chosenFilm && films) {
     const formattedFilms = filteredFilms.map((film) => <Film key={film.id} chooseFilm={chooseFilm} {...film} />);
