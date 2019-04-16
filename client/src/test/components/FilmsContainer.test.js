@@ -70,8 +70,8 @@ describe("rendering of container with films", () => {
 		title: "Zero Dark Thirty",
 		vote_average: 6.7,
 		vote_count: 2028
-	}];
-	
+    }];
+    
 	const chosenFilm = {
 		budget: 40000000,
 		genres: ['Action', 'Drama'],
