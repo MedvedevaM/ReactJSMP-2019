@@ -1,17 +1,13 @@
-import {
-  GET_FILMS, GET_QUANTITY_OF_FILMS, SET_SEARCH_PARAMETER, SET_SORT_PARAMETER, SET_CHOSEN_FILM
-} from "../actions/actions";
+import { GET_FILMS, GET_QUANTITY_OF_FILMS, SET_SEARCH_PARAMETER, SET_SORT_PARAMETER, SET_CHOSEN_FILM } from '../actions/actions';
 
 const DEFAULT_SEARCH_PARAMETER = 'Title';
 const DEFAULT_SORT_PARAMETER = 'release date';
 
-const initialState = {
-  films: [],
+const initialState = { films: [],
   quantityOfFilms: 0,
   chosenFilm: null,
   searchBy: DEFAULT_SEARCH_PARAMETER,
-  sortBy: DEFAULT_SORT_PARAMETER,
-};
+  sortBy: DEFAULT_SORT_PARAMETER };
 
 export const films = (state = initialState, action) => {
   switch (action.type) {

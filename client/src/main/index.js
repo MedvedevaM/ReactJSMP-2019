@@ -10,7 +10,8 @@ import './css/font-awesome/css/font-awesome.min.css';
 
 const store = createStore(appReducer, applyMiddleware(thunk));
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>, 
-    document.getElementById('app'));
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app'),
+);

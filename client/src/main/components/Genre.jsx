@@ -1,10 +1,8 @@
-import React from "react";
+import React from 'react';
 
 const Genre = (props) => {
   const { genres } = props;
-  const formattedGenres = genres.reduce((formattedGenres, currentGenre) => {
-    return `${formattedGenres} & ${currentGenre}`;
-  });
+  const formattedGenres = genres.reduce((formattedGenres, currentGenre) => `${formattedGenres} & ${currentGenre}`);
   return (
     <p>{formattedGenres}</p>
   );

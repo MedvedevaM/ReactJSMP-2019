@@ -1,5 +1,5 @@
-import React from "react";
-import RadioButtons from "./RadioButtons.jsx";
+import React from 'react';
+import RadioButtons from './RadioButtons.jsx';
 
 export const FilmSearch = (props) => {
   const { chosenFilm, onSearchModeClick, onSearchParameterClick, searchBy } = props;
@@ -29,17 +29,17 @@ export const FilmSearch = (props) => {
           </div>
         </div>
       </header>
-    )
+    );
   }
 
-  const searchParameters = ["Title", "Genre"];
+  const searchParameters = ['Title', 'Genre'];
   return (
     <header id="home" className="header-bg">
       <div className="transparent-black-header-bg">
         <div className="container">
           <a href="#home" className="logo common-color-1">
             netflixroulette
-            </a>
+          </a>
           <h1>Find your movie</h1>
           <input className="search-input" type="text" value={props.value} onChange={props.searchFilms} />
           <i className="fa fa-search search-input-enter common-color-1" aria-hidden="true" />
