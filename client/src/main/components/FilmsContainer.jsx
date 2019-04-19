@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Film from './Film.jsx';
 import Genre from './Genre.jsx';
-import { getFilteredFilms } from '../store/reducers/reducers';
+import { getFilteredFilms } from '../store/reducers/selectors';
 
 export const FilmsContainer = (props) => {
   const { films, quantityOfFilms, chooseFilm, chosenFilm, sortBy, onSortParameterClick, filteredFilms, foundFilms } = props;

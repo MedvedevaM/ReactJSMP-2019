@@ -1,18 +1,18 @@
-export const GET_FILMS = 'GET_FILMS';
-export const GET_QUANTITY_OF_FILMS = 'GET_QUANTITY_OF_FILMS';
+export const SET_FILMS = 'SET_FILMS';
+export const SET_QUANTITY_OF_FILMS = 'SET_QUANTITY_OF_FILMS';
 export const SET_SORT_PARAMETER = 'SET_SORT_PARAMETER';
 export const SET_SEARCH_PARAMETER = 'SET_SEARCH_PARAMETER';
 export const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE';
 export const SET_CHOSEN_FILM = 'SET_CHOSEN_FILM';
 export const SET_FOUND_FILMS = 'SET_FOUND_FILMS';
 
-export const setFilms = films => ({ type: GET_FILMS,
+export const setFilms = films => ({ type: SET_FILMS,
   films });
 
 export const setFoundFilms = foundFilms => ({ type: SET_FOUND_FILMS,
   foundFilms });
 
-export const setQuantityOfFilms = quantityOfFilms => ({ type: GET_QUANTITY_OF_FILMS,
+export const setQuantityOfFilms = quantityOfFilms => ({ type: SET_QUANTITY_OF_FILMS,
   quantityOfFilms });
 
 export const setSortParameter = sortBy => ({ type: SET_SORT_PARAMETER,
@@ -37,18 +37,6 @@ export function fetchFilms(url) {
       dispatch(setQuantityOfFilms(films.data.length));
       dispatch(setFoundFilms(films.data));
     });
-}
-
-export function getSortedFilms(films, parameter) {
-  return (dispatch) => {
-    if (parameter === 'rating') {
-      films = films.sort((a, b) => a.vote_average - b.vote_average);
-    }
-    if (parameter === 'release date') {
-      films = films.sort((a, b) => a.release_date.slice(0, 4) - b.release_date.slice(0, 4));
-    }
-    dispatch(setFilms(films));
-  };
 }
 
 export function searchFilms(value, films, searchParameter) {

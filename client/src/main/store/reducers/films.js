@@ -1,4 +1,4 @@
-import { GET_FILMS, GET_QUANTITY_OF_FILMS, SET_SEARCH_PARAMETER, SET_SORT_PARAMETER, SET_SEARCH_VALUE, SET_CHOSEN_FILM, SET_FOUND_FILMS } from '../actions/actions';
+import { SET_FILMS, SET_QUANTITY_OF_FILMS, SET_SEARCH_PARAMETER, SET_SORT_PARAMETER, SET_SEARCH_VALUE, SET_CHOSEN_FILM, SET_FOUND_FILMS } from '../actions/actions';
 
 const DEFAULT_SEARCH_PARAMETER = 'Title';
 const DEFAULT_SORT_PARAMETER = 'release date';
@@ -14,9 +14,9 @@ const initialState = { films: [],
 
 export const films = (state = initialState, action) => {
   switch (action.type) {
-    case GET_FILMS:
+    case SET_FILMS:
       return { ...state, films: action.films };
-    case GET_QUANTITY_OF_FILMS:
+    case SET_QUANTITY_OF_FILMS:
       return { ...state, quantityOfFilms: action.quantityOfFilms };
     case SET_SORT_PARAMETER:
       return { ...state, sortBy: action.sortBy };

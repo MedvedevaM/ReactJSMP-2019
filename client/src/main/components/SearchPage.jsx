@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setSearchParameter, setSortParameter, setChosenFilm, fetchFilms, getSortedFilms, setSearchValue, searchFilms } from '../store/actions/actions';
-import { getFilms, getChosenFilm, getFilmsQuantity, getSearchParameter, getSortParameter, getSearchValue, getFoundFilms } from '../store/reducers/reducers';
+import { setSearchParameter, setSortParameter, setChosenFilm, fetchFilms, setSearchValue, searchFilms } from '../store/actions/actions';
+import { getFilms, getChosenFilm, getFilmsQuantity, getSearchParameter, getSortParameter, getSearchValue, getFoundFilms } from '../store/reducers/selectors';
 import FilmsContainer from './FilmsContainer.jsx';
 import FilmSearch from './FilmSearch.jsx';
 
@@ -35,7 +35,7 @@ export class SearchPage extends Component {
     const { sortParameter } = event.target.dataset;
     if (sortParameter) {
       setSortParameter(sortParameter);
-      getSortedFilms(films, sortParameter);
+      getFilms(films, sortParameter);
     }
   }
 
@@ -85,7 +85,7 @@ export const mapDispatchToProps = dispatch => ({ setSearchParameter: parameter =
   setSortParameter: parameter => dispatch(setSortParameter(parameter)),
   setChosenFilm: film => dispatch(setChosenFilm(film)),
   fetchFilms: url => dispatch(fetchFilms(url)),
-  getSortedFilms: (films, parameter) => dispatch(getSortedFilms(films, parameter)),
+  getFilms: films => dispatch(getFilms(films)),
   searchFilms: (value, films, searchParameter) => dispatch(searchFilms(value, films, searchParameter)) });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
