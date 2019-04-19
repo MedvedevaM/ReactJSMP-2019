@@ -72,7 +72,7 @@ export class SearchPage extends Component {
   }
 }
 
-export const mapStateToProps = store => ({ films: getFilms(store),
+export const mapStateToProps = store => ({ films: getFilms(store.films),
   quantityOfFilms: getFilmsQuantity(store),
   chosenFilm: getChosenFilm(store),
   searchBy: getSearchParameter(store),

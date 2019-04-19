@@ -2,8 +2,8 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
 
-import { SET_FILMS, SET_QUANTITY_OF_FILMS, SET_SORT_PARAMETER, SET_SEARCH_PARAMETER, SET_CHOSEN_FILM } from '../../../main/store/actions/actions';
-import { setFilms, setQuantityOfFilms, setSortParameter, setSearchParameter, setChosenFilm, fetchFilms } from '../../../main/store/actions/actions';
+import { SET_FILMS, SET_QUANTITY_OF_FILMS, SET_SORT_PARAMETER, SET_SEARCH_PARAMETER, SET_CHOSEN_FILM, SET_SEARCH_VALUE, SET_FOUND_FILMS } from '../../../main/store/actions/actions';
+import { setFilms, setQuantityOfFilms, setSortParameter, setSearchParameter, setChosenFilm, fetchFilms, setSearchValue, searchFilms, setFoundFilms, checkMatching } from '../../../main/store/actions/actions';
 
 describe('actions', () => {
     it('should create an action to get films', () => {
@@ -46,6 +46,15 @@ describe('actions', () => {
         }
         expect(setChosenFilm(chosenFilm)).toEqual(expectedAction);
     });
+
+    it('should create an action to set search value', () => {
+        const searchValue = "test";
+        const expectedAction = {
+            type: SET_SEARCH_VALUE,
+            searchValue
+        }
+        expect(setSearchValue(searchValue)).toEqual(expectedAction);
+    });
 })
 
 const middlewares = [thunk]
@@ -86,4 +95,30 @@ describe('async actions', () => {
     })
 })
 
-describe('test middlewares', () => {})
+describe('test middlewares', () => {
+    const foundFilms = [{
+        title: "test",
+        genres: "Action"
+    }, {
+        title: "test",
+        genres: "Drama"
+    }, {
+        title: "test",
+        genres: "Adventure"
+    }];
+
+    it('check sorting of films', () => {
+        const expectedAction = {
+            type: SET_FOUND_FILMS,
+            foundFilms
+        };
+        const store = mockStore({
+            foundFilms
+        })
+        store.dispatch((value, films, searchParameter) => store.dispatch(searchFilms(value, films, searchParameter)));
+        expect(setFoundFilms(foundFilms)).toEqual(expectedAction);
+        expect(checkMatching('test', 'test   ')).toEqual(true);
+        expect(checkMatching('testtttt', 'test')).toEqual(false);
+        expect(checkMatching('test', 'tess')).toEqual(false);
+    })
+})

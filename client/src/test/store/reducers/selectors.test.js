@@ -26,7 +26,7 @@ describe("test selectors", () => {
                 }
             }
         };
-        expect(getFilms(store("test"))).toEqual([{
+        expect(getFilms(store("test").films)).toEqual([{
                 release_date: "2015",
                 vote_average: 3
             }, {
@@ -37,7 +37,7 @@ describe("test selectors", () => {
                 vote_average: 1
             }]
         );
-        expect(getFilms(store("rating"))).toEqual([{
+        expect(getFilms(store("rating").films)).toEqual([{
                 release_date: "2015",
                 vote_average: 3
             }, {
@@ -48,7 +48,7 @@ describe("test selectors", () => {
                 vote_average: 1
             }]
         );
-        expect(getFilms(store("release date"))).toEqual([{
+        expect(getFilms(store("release date").films)).toEqual([{
                 release_date: "2015",
                 vote_average: 3
             }, {

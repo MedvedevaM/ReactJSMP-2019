@@ -4,14 +4,14 @@ import { films } from './films';
 export const appReducer = combineReducers({ films });
 
 // Films selectors
-export function getFilms(store) {
-  if (store.films.sortBy === 'rating') {
-    return store.films.films.sort((a, b) => b.vote_average - a.vote_average);
+export function getFilms(films) {
+  if (films.sortBy === 'rating') {
+    return films.films.sort((a, b) => b.vote_average - a.vote_average);
   }
-  if (store.films.sortBy === 'release date') {
-    return store.films.films.sort((a, b) => b.release_date.slice(0, 4) - a.release_date.slice(0, 4));
+  if (films.sortBy === 'release date') {
+    return films.films.sort((a, b) => b.release_date.slice(0, 4) - a.release_date.slice(0, 4));
   }
-  return store.films.films;
+  return films.films;
 }
 
 export function getFilmsQuantity(store) {

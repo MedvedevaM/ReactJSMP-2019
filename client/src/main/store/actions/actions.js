@@ -53,7 +53,7 @@ export function searchFilms(value, films, searchParameter) {
   };
 }
 
-function checkMatching(searchValue, string) {
+export function checkMatching(searchValue, string) {
   searchValue = searchValue.toLowerCase().trim();
   string = string.toLowerCase().trim();
   const searchValueLength = searchValue.length;
