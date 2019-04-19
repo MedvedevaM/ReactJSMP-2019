@@ -37,6 +37,7 @@ const props = {
     searchParameter: jest.fn(),
     setSearchParameter: jest.fn(),
     setChosenFilm: jest.fn(),
+    foundFilms: films
 }
 
 describe("search page rendering and functionality", () => {

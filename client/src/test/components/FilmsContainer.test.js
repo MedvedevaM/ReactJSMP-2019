@@ -128,8 +128,9 @@ describe("rendering of container with films", () => {
             title: "Zodiac",
             vote_average: 7.3,
             vote_count: 2780
-        }]
-    };
+		}],
+		foundFilms: films
+	};
 	
 	it("renders correctly FilmsContainer", () => {
         const filmContainer = shallow(<FilmsContainer {...props} />);

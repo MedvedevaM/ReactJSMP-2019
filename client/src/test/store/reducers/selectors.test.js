@@ -1,4 +1,4 @@
-import { getFilms, getFilmsQuantity, getChosenFilm, getSearchParameter, getSortParameter, getFilteredFilms, filterFilmsByGenre } from "../../../main/store/reducers/reducers";
+import { getFilms, getFilmsQuantity, getChosenFilm, getSearchParameter, getSortParameter, getFilteredFilms, filterFilmsByGenre } from "../../../main/store/reducers/selectors";
 const store = {
     films: {
         quantityOfFilms: 3,

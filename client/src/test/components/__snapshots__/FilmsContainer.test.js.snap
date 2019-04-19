@@ -9,7 +9,8 @@ exports[`rendering of container with films renders correctly FilmsContainer 1`] 
       className="container flex"
     >
       <p>
-         movies found
+         
+        movies found
       </p>
       <div
         className="flex sorter"

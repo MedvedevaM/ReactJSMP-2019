@@ -1,4 +1,4 @@
-import { GET_FILMS, GET_QUANTITY_OF_FILMS, SET_SORT_PARAMETER, SET_SEARCH_PARAMETER, SET_CHOSEN_FILM } from '../../../main/store/actions/actions';
+import { SET_FILMS, SET_QUANTITY_OF_FILMS, SET_SORT_PARAMETER, SET_SEARCH_PARAMETER, SET_CHOSEN_FILM } from '../../../main/store/actions/actions';
 import { films } from '../../../main/store/reducers/films';
 
 describe('films reducer', () => {
@@ -9,13 +9,15 @@ describe('films reducer', () => {
             chosenFilm: null,
             searchBy: "Title",
             sortBy: "release date",
+            foundFilms: [],
+            searchValue: ""
         })
     });
 
-    it('should handle GET_FILMS', () => {
+    it('should handle SET_FILMS', () => {
         expect(
             films({}, {
-                type: GET_FILMS,
+                type: SET_FILMS,
                 films: [{}, {}]
             })
         ).toEqual({
@@ -24,10 +26,10 @@ describe('films reducer', () => {
         )
     });
 
-    it('should handle GET_QUANTITY_OF_FILMS', () => {
+    it('should handle SET_QUANTITY_OF_FILMS', () => {
         expect(
             films({}, {
-                type: GET_QUANTITY_OF_FILMS,
+                type: SET_QUANTITY_OF_FILMS,
                 quantityOfFilms: 3
             })
         ).toEqual({
