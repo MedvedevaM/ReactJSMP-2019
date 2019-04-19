@@ -1,3 +1,14 @@
 {
-    "extends": "airbnb"
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "rules": {
+        "react/prop-types": 0,
+        "camelcase": ["error", { 
+            "ignoreDestructuring": true,
+            "properties": "never"
+        }],
+        "object-curly-newline": ["error", "never"],
+        "max-len": ["error", { "code": 100 }],
+        "import/prefer-default-export": "off"
+    }
 }

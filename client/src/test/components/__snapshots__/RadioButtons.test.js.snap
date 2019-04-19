@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`check radio buttons rendering 1`] = `
+Array [
+  <Fragment
+    key="containerOffirst_parameterSortParameter"
+  >
+    <input
+      data-parameter="first_parameter"
+      defaultChecked={false}
+      key="first_parameter"
+      name="parameters"
+      type="radio"
+      value="first_parameter"
+    />
+    <label
+      className="uppercase bold"
+      data-parameter="first_parameter"
+      htmlFor="first_parameter"
+    >
+      first_parameter
+    </label>
+  </Fragment>,
+  <Fragment
+    key="containerOfsecond_parameterSortParameter"
+  >
+    <input
+      data-parameter="second_parameter"
+      defaultChecked={true}
+      key="second_parameter"
+      name="parameters"
+      type="radio"
+      value="second_parameter"
+    />
+    <label
+      className="uppercase bold"
+      data-parameter="second_parameter"
+      htmlFor="second_parameter"
+    >
+      second_parameter
+    </label>
+  </Fragment>,
+  <Fragment
+    key="containerOfthird_parameterSortParameter"
+  >
+    <input
+      data-parameter="third_parameter"
+      defaultChecked={false}
+      key="third_parameter"
+      name="parameters"
+      type="radio"
+      value="third_parameter"
+    />
+    <label
+      className="uppercase bold"
+      data-parameter="third_parameter"
+      htmlFor="third_parameter"
+    >
+      third_parameter
+    </label>
+  </Fragment>,
+]
+`;

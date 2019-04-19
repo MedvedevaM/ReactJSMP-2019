@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`film search rendering renders correctly 1`] = `
+<header
+  className="header-bg"
+  id="home"
+>
+  <div
+    className="transparent-black-header-bg"
+  >
+    <div
+      className="container"
+    >
+      <a
+        className="logo common-color-1"
+        href="#home"
+      >
+        netflixroulette
+      </a>
+      <h1>
+        Find your movie
+      </h1>
+      <input
+        className="search-input"
+        type="text"
+      />
+      <i
+        aria-hidden="true"
+        className="fa fa-search search-input-enter common-color-1"
+      />
+      <div
+        className="flex search-parameters"
+      >
+        <p>
+          Search by
+        </p>
+        <RadioButtons
+          parameters={
+            Array [
+              "Title",
+              "Genre",
+            ]
+          }
+        />
+      </div>
+    </div>
+  </div>
+</header>
+`;
