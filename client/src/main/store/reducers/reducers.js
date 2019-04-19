@@ -26,8 +26,16 @@ export function getSearchParameter(store) {
   return store.films.searchBy;
 }
 
+export function getSearchValue(store) {
+  return store.films.searchValue;
+}
+
 export function getSortParameter(store) {
   return store.films.sortBy;
+}
+
+export function getFoundFilms(store) {
+  return store.films.foundFilms;
 }
 
 export function getFilteredFilms(store) {

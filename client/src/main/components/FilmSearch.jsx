@@ -41,7 +41,7 @@ export const FilmSearch = (props) => {
             netflixroulette
           </a>
           <h1>Find your movie</h1>
-          <input className="search-input" type="text" value={props.value} onChange={props.searchFilms} />
+          <input className="search-input" type="text" value={props.searchValue} onChange={props.searchFilms} />
           <i className="fa fa-search search-input-enter common-color-1" aria-hidden="true" />
           <div className="flex search-parameters">
             <p>Search by</p>
