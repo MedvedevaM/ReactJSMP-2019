@@ -1,3 +1,5 @@
+import { checkMatching } from '../utils/utils';
+
 export const SET_FILMS = 'SET_FILMS';
 export const SET_QUANTITY_OF_FILMS = 'SET_QUANTITY_OF_FILMS';
 export const SET_SORT_PARAMETER = 'SET_SORT_PARAMETER';
@@ -29,13 +31,17 @@ export const setChosenFilm = chosenFilm => ({ type: SET_CHOSEN_FILM,
 
 // middlewares
 
-export function fetchFilms(url) {
+export function fetchFilms(url, searchValue, searchParameter) {
   return dispatch => fetch(url)
     .then(response => response.json())
     .then((films) => {
       dispatch(setFilms(films.data));
-      dispatch(setQuantityOfFilms(films.data.length));
-      dispatch(setFoundFilms(films.data));
+      if (searchValue) {
+        searchFilms(searchValue, films.data, searchParameter)(dispatch);
+      } else {
+        dispatch(setFoundFilms(films.data));
+        dispatch(setQuantityOfFilms(films.data.length));
+      }
     });
 }
 
@@ -50,21 +56,7 @@ export function searchFilms(value, films, searchParameter) {
     }
 
     dispatch(setFoundFilms(films));
+    dispatch(setQuantityOfFilms(films.length));
   };
 }
 
-export function checkMatching(searchValue, string) {
-  searchValue = searchValue.toLowerCase().trim();
-  string = string.toLowerCase().trim();
-  const searchValueLength = searchValue.length;
-  const stringLength = string.length;
-  if (searchValueLength <= stringLength) {
-    for (let i = 0; i < searchValueLength; i++) {
-      if (searchValue[i] !== string[i]) {
-        return false;
-      }
-    }
-    return true;
-  }
-  return false;
-}
