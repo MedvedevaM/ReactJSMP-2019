@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Film from './Film.jsx';
 import Genre from './Genre.jsx';
-import { getFilteredFilms } from '../store/reducers/reducers';
+import { getFilteredFilms } from '../store/reducers/selectors';
 
 export const FilmsContainer = (props) => {
-  const { films, quantityOfFilms, chooseFilm, chosenFilm, sortBy, onSortParameterClick, filteredFilms } = props;
+  const { films, quantityOfFilms, chooseFilm, chosenFilm, sortBy, onSortParameterClick, filteredFilms, foundFilms } = props;
   if (chosenFilm && films) {
     const formattedFilms = filteredFilms.map(film => <Film key={film.id} chooseFilm={chooseFilm} {...film} />);
     return (
@@ -23,7 +23,7 @@ export const FilmsContainer = (props) => {
     );
   }
 
-  const formattedFilms = films ? films.map(film => <Film key={film.id} chooseFilm={chooseFilm} {...film} />) : null;
+  const formattedFilms = foundFilms ? foundFilms.map(film => <Film key={film.id} chooseFilm={chooseFilm} {...film} />) : null;
   return (
     <>
       <div className="search-results">

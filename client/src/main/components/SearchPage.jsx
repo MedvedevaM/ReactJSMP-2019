@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setSearchParameter, setSortParameter, setChosenFilm, fetchFilms, getSortedFilms } from '../store/actions/actions';
-import { getFilms, getChosenFilm, getFilmsQuantity, getSearchParameter, getSortParameter } from '../store/reducers/reducers';
+import { setSearchParameter, setSortParameter, setChosenFilm, fetchFilms, setSearchValue, searchFilms } from '../store/actions/actions';
+import { getFilms, getChosenFilm, getFilmsQuantity, getSearchParameter, getSortParameter, getSearchValue, getFoundFilms } from '../store/reducers/selectors';
 import FilmsContainer from './FilmsContainer.jsx';
 import FilmSearch from './FilmSearch.jsx';
 
@@ -11,7 +11,11 @@ export class SearchPage extends Component {
     fetchFilms('http://reactjs-cdp.herokuapp.com/movies');
   }
 
-  searchFilms = () => { };
+  searchFilms = (event) => {
+    const { films, setSearchValue, searchBy, searchFilms } = this.props;
+    setSearchValue(event.target.value);
+    searchFilms(event.target.value, films, searchBy);
+  };
 
   onSearchModeClick = () => {
     const { setChosenFilm } = this.props;
@@ -31,7 +35,7 @@ export class SearchPage extends Component {
     const { sortParameter } = event.target.dataset;
     if (sortParameter) {
       setSortParameter(sortParameter);
-      getSortedFilms(films, sortParameter);
+      getFilms(films, sortParameter);
     }
   }
 
@@ -68,16 +72,20 @@ export class SearchPage extends Component {
   }
 }
 
-export const mapStateToProps = store => ({ films: getFilms(store),
+export const mapStateToProps = store => ({ films: getFilms(store.films),
   quantityOfFilms: getFilmsQuantity(store),
   chosenFilm: getChosenFilm(store),
   searchBy: getSearchParameter(store),
-  sortBy: getSortParameter(store) });
+  searchValue: getSearchValue(store),
+  sortBy: getSortParameter(store),
+  foundFilms: getFoundFilms(store) });
 
 export const mapDispatchToProps = dispatch => ({ setSearchParameter: parameter => dispatch(setSearchParameter(parameter)),
+  setSearchValue: value => dispatch(setSearchValue(value)),
   setSortParameter: parameter => dispatch(setSortParameter(parameter)),
   setChosenFilm: film => dispatch(setChosenFilm(film)),
   fetchFilms: url => dispatch(fetchFilms(url)),
-  getSortedFilms: (films, parameter) => dispatch(getSortedFilms(films, parameter)) });
+  getFilms: films => dispatch(getFilms(films)),
+  searchFilms: (value, films, searchParameter) => dispatch(searchFilms(value, films, searchParameter)) });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);

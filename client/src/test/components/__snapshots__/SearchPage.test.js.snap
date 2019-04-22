@@ -51,6 +51,38 @@ exports[`search page rendering and functionality check radio buttons rendering 1
         },
       ]
     }
+    foundFilms={
+      Array [
+        Object {
+          "genres": Array [
+            "Drama",
+            "Adventure",
+          ],
+          "id": 1111,
+          "overview": "The third film based on Marvel's Guardians of the Galaxy.",
+          "poster_path": "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
+          "release_date": "2020-05-01",
+          "runtime": 100,
+          "tagline": "Tag line",
+          "title": "Guardians of the Galaxy Vol. 3",
+          "vote_average": 8,
+        },
+        Object {
+          "genres": Array [
+            "Drama",
+            "Adventure",
+          ],
+          "id": 2222,
+          "overview": "The third film based on Marvel's Guardians of the Galaxy.",
+          "poster_path": "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
+          "release_date": "2020-05-01",
+          "runtime": 100,
+          "tagline": "Tag line",
+          "title": "Guardians of the Galaxy Vol. 3",
+          "vote_average": 8,
+        },
+      ]
+    }
     getSortedFilms={[MockFunction]}
     onSearchModeClick={[Function]}
     onSearchParameterClick={[Function]}
@@ -82,6 +114,38 @@ exports[`search page rendering and functionality check radio buttons rendering 1
       }
     }
     films={
+      Array [
+        Object {
+          "genres": Array [
+            "Drama",
+            "Adventure",
+          ],
+          "id": 1111,
+          "overview": "The third film based on Marvel's Guardians of the Galaxy.",
+          "poster_path": "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
+          "release_date": "2020-05-01",
+          "runtime": 100,
+          "tagline": "Tag line",
+          "title": "Guardians of the Galaxy Vol. 3",
+          "vote_average": 8,
+        },
+        Object {
+          "genres": Array [
+            "Drama",
+            "Adventure",
+          ],
+          "id": 2222,
+          "overview": "The third film based on Marvel's Guardians of the Galaxy.",
+          "poster_path": "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
+          "release_date": "2020-05-01",
+          "runtime": 100,
+          "tagline": "Tag line",
+          "title": "Guardians of the Galaxy Vol. 3",
+          "vote_average": 8,
+        },
+      ]
+    }
+    foundFilms={
       Array [
         Object {
           "genres": Array [
