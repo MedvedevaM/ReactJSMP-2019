@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import RadioButtons from './RadioButtons.jsx';
 
 export const FilmSearch = (props) => {
@@ -10,7 +11,9 @@ export const FilmSearch = (props) => {
         <div className="transparent-black-header-bg">
           <div className="container flex space-between">
             <a href="#home" className="logo common-color-1">netflixroulette</a>
-            <button onClick={onSearchModeClick} className="search-button-default-mode common-color-1 bold">Search</button>
+            <NavLink to="/">
+              <button onClick={onSearchModeClick} className="search-button-default-mode common-color-1 bold">Search</button>
+            </NavLink>
           </div>
           <div className="chosen-film flex">
             <img src={chosenFilm.poster_path} alt={chosenFilm.title} />
@@ -41,7 +44,9 @@ export const FilmSearch = (props) => {
             netflixroulette
           </a>
           <h1>Find your movie</h1>
-          <input className="search-input" type="text" value={props.searchValue} onChange={props.searchFilms} />
+          <NavLink to={`/search/${props.searchValue}`}>
+            <input className="search-input" type="text" value={props.searchValue} onChange={props.searchFilms} />
+          </NavLink>
           <i className="fa fa-search search-input-enter common-color-1" aria-hidden="true" />
           <div className="flex search-parameters">
             <p>Search by</p>

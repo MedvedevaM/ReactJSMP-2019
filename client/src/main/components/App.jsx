@@ -2,9 +2,9 @@ import React from 'react';
 import SearchPage from './SearchPage.jsx';
 import ErrorBoundary from './ErrorBoundary.jsx';
 
-const App = () => (
+const App = ({ match: { params } }) => (
   <ErrorBoundary>
-    <SearchPage />
+    <SearchPage chosenFilmId={params.id} searchValue={params.search} />
   </ErrorBoundary>
 );
 

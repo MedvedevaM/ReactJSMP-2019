@@ -18,8 +18,8 @@ export function getFilmsQuantity(store) {
   return store.films.quantityOfFilms;
 }
 
-export function getChosenFilm(store) {
-  return store.films.chosenFilm;
+export function getChosenFilm(store, chosenFilmId) {
+  return store.films.films.find(film => film.id === +chosenFilmId);
 }
 
 export function getSearchParameter(store) {
