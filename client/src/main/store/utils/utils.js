@@ -43,4 +43,3 @@ export const callApi = url =>
       data => ({ data }),
       error => ({ error }),
     )
-    .catch(error => ({ error }));

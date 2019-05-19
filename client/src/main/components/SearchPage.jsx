@@ -7,7 +7,7 @@ import FilmsContainer from './FilmsContainer.jsx';
 import FilmSearch from './FilmSearch.jsx';
 
 export class SearchPage extends Component {
-  componentDidMount() {
+  componentWillMount() {
     const { fetchFilmsFromApi, searchValue, searchBy } = this.props;
     fetchFilmsFromApi('http://reactjs-cdp.herokuapp.com/movies', searchValue, searchBy);
   }

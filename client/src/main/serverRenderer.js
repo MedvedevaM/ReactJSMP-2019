@@ -12,6 +12,7 @@ function renderHTML(html, preloadedState) {
         <head>
           <meta charset=utf-8>
           <title>Netflix</title>
+          <link rel="stylesheet" href="/main.css"></link>
         </head>
         <body>
           <div id="app">${html}</div>
@@ -21,7 +22,6 @@ function renderHTML(html, preloadedState) {
             window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
           </script>
           <script src="/app.bundle.js"></script>
-          <link rel="stylesheet" href="/main.css"></link>
         </body>
       </html>
   `;
@@ -39,7 +39,6 @@ export default function serverRenderer() {
         store={store}
       />
     );
-    const html = renderToString(root)
 
     if (context.url) {
       res.writeHead(302, {
@@ -50,9 +49,11 @@ export default function serverRenderer() {
     }
 
     store.runSaga().toPromise().then(() => {
+      const html = renderToString(root);
       res.send(renderHTML(html, store.getState()));
     });
 
+    renderToString(root);
     store.close();
   };
 }
