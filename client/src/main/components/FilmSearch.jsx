@@ -44,9 +44,9 @@ export const FilmSearch = (props) => {
             netflixroulette
           </a>
           <h1>Find your movie</h1>
-          <NavLink to={`/search/${props.searchValue}`}>
+          {/* <NavLink to={`/search/${props.searchValue}`}> */}
             <input className="search-input" type="text" value={props.searchValue} onChange={props.searchFilms} />
-          </NavLink>
+          {/* </NavLink> */}
           <i className="fa fa-search search-input-enter common-color-1" aria-hidden="true" />
           <div className="flex search-parameters">
             <p>Search by</p>

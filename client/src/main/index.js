@@ -1,26 +1,22 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { appReducer } from './store/reducers/selectors';
-import App from './components/App.jsx';
-import NotFound from './components/NotFound.jsx';
-import './css/index.css';
-import './css/font-awesome/css/font-awesome.min.css';
+import { hydrate } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Root from './Root.jsx';
 
-const store = createStore(appReducer, applyMiddleware(thunk));
-ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <Switch>
-        <Route exact path="/search/:search?" component={App} />
-        <Route exact path="/film/:id?" component={App} />
-        <Route exact path="/" component={App} />
-        <Route component={NotFound} />
-      </Switch>
-    </Router>
-  </Provider>,
-  document.getElementById('app'),
+import configureStore from './store';
+
+const store = configureStore(window.PRELOADED_STATE);
+store.runSaga();
+
+const root = (
+  <Root
+    Router={BrowserRouter}
+    store={store}
+  />
 );
+
+const render = () => {
+  hydrate(root, document.getElementById('app'));
+};
+
+render();
