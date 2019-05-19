@@ -15,6 +15,7 @@ export function* fetchFilms({ payload: { url, searchValue, searchParameter } }) 
   if (searchValue) {
     yield put(setSearchValue(searchValue));
     yield put(searchFilms(searchValue, data.data, searchParameter));
+    yield put(setFoundFilms(filterBySearchParameter(searchValue, data.data, searchParameter)));
   } else {
     yield put(setFoundFilms(data.data));
     yield put(setQuantityOfFilms(data.data.length));
@@ -22,6 +23,13 @@ export function* fetchFilms({ payload: { url, searchValue, searchParameter } }) 
 }
 
 export function* handleSearchFilms({ payload: { value, films, searchParameter } }) {
+  films = filterBySearchParameter(value, films, searchParameter);
+
+  yield put(setFoundFilms(films));
+  yield put(setQuantityOfFilms(films.length));
+}
+
+function filterBySearchParameter(value, films, searchParameter) {
   if (searchParameter === 'Title' && value) {
     films = films.filter(film => checkMatching(value, film.title));
   }
@@ -29,9 +37,7 @@ export function* handleSearchFilms({ payload: { value, films, searchParameter } 
   if (searchParameter === 'Genre' && value) {
     films = films.filter(film => film.genres.some(genre => checkMatching(value, genre)));
   }
-
-  yield put(setFoundFilms(films));
-  yield put(setQuantityOfFilms(films.length));
+  return films;
 }
 
 function* appSaga() {
