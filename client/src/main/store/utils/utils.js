@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 export function checkMatching(searchValue, string) {
   searchValue = searchValue.toLowerCase().trim();
   string = string.toLowerCase().trim();
@@ -30,3 +32,14 @@ export function debounce(f, ms) {
     timer = setTimeout(onComplete, ms);
   };
 }
+
+export const callApi = url =>
+  fetch(url)
+    .then(
+      response => response.json(),
+      error => Promise.reject(error),
+    )
+    .then(
+      data => ({ data }),
+      error => ({ error }),
+    )

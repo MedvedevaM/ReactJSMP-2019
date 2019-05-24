@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setSearchParameter, setSortParameter, setChosenFilm, fetchFilms, setSearchValue, searchFilms } from '../store/actions/actions';
+import { setSearchParameter, setSortParameter, setChosenFilm, fetchFilmsFromApi, setSearchValue, searchFilms } from '../store/actions/actions';
 import { getFilms, getChosenFilm, getFilmsQuantity, getSearchParameter, getSortParameter, getSearchValue, getFoundFilms } from '../store/reducers/selectors';
 import { debounce } from '../store/utils/utils';
 import FilmsContainer from './FilmsContainer.jsx';
 import FilmSearch from './FilmSearch.jsx';
 
 export class SearchPage extends Component {
-  componentDidMount() {
-    const { fetchFilms, searchValue, searchBy } = this.props;
-    fetchFilms('http://reactjs-cdp.herokuapp.com/movies', searchValue, searchBy);
+  componentWillMount() {
+    const { fetchFilmsFromApi, searchValue, searchBy } = this.props;
+    fetchFilmsFromApi('http://reactjs-cdp.herokuapp.com/movies', searchValue, searchBy);
   }
 
   searchFilms = (event) => {
-    const { films, setSearchValue, searchBy, searchFilms } = this.props;
+    const { films, setSearchValue, searchBy, searchFilms, history } = this.props;
     const searchValue = event.target.value;
     debounce(() => {
       setSearchValue(searchValue);
       searchFilms(searchValue, films, searchBy);
-      window.location.hash = `/search/${searchValue}`;
+      history.push(`/search/${searchValue}`);
     }, 0)(0);
   };
 
@@ -85,6 +85,6 @@ export const mapStateToProps = (store, ownProps) => ({ films: getFilms(store.fil
   sortBy: getSortParameter(store),
   foundFilms: getFoundFilms(store) });
 
-export const mapDispatchToProps = { setSearchParameter, setSearchValue, setSortParameter, setChosenFilm, fetchFilms, getFilms, searchFilms };
+export const mapDispatchToProps = { setSearchParameter, setSearchValue, setSortParameter, setChosenFilm, fetchFilmsFromApi, getFilms, searchFilms };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
