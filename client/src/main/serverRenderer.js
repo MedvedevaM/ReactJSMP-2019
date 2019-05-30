@@ -1,11 +1,14 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { ServerStyleSheet } from 'styled-components';
 
 import Root from './Root.jsx';
 import configureStore from './store';
 
-function renderHTML(html, preloadedState) {
+const sheet = new ServerStyleSheet();
+
+function renderHTML(html, preloadedState, styles) {
   return `
       <!doctype html>
       <html>
@@ -13,6 +16,7 @@ function renderHTML(html, preloadedState) {
           <meta charset=utf-8>
           <title>Netflix</title>
           <link rel="stylesheet" href="/main.css"></link>
+          ${styles}
         </head>
         <body>
           <div id="app">${html}</div>
@@ -50,7 +54,8 @@ export default function serverRenderer() {
 
     store.runSaga().toPromise().then(() => {
       const html = renderToString(root);
-      res.send(renderHTML(html, store.getState()));
+      const styles = sheet.getStyleTags();
+      res.send(renderHTML(html, store.getState(), styles));
     });
 
     renderToString(root);
