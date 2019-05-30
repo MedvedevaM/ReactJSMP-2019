@@ -11,12 +11,14 @@ function* watchSearchFilms() {
 
 export function* fetchFilms({ payload: { url, searchValue, searchParameter } }) {
   const { data } = yield call(callApi, url);
-  yield put(setFilms(data.data));
-  if (searchValue) {
+  if (data) {
+    yield put(setFilms(data.data));
+  }
+  if (searchValue && data) {
     yield put(setSearchValue(searchValue));
     yield put(searchFilms(searchValue, data.data, searchParameter));
     yield put(setFoundFilms(filterBySearchParameter(searchValue, data.data, searchParameter)));
-  } else {
+  } else if (data) {
     yield put(setFoundFilms(data.data));
     yield put(setQuantityOfFilms(data.data.length));
   }

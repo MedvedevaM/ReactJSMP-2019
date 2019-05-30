@@ -8,7 +8,8 @@
     "start": "cross-env NODE_ENV=development node --require @babel/register ./server/express.js",
     "build": "cross-env NODE_ENV=production webpack --config ./webpack",
     "test": "jest --coverage",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "storybook": "start-storybook"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,9 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "@storybook/addon-actions": "^5.0.11",
+    "@storybook/addon-links": "^5.0.11",
+    "@storybook/react": "^5.0.11",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.6",
@@ -49,6 +53,7 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
     "redux-thunk": "^2.3.0",
+    "styled-components": "^4.2.0",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
