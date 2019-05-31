@@ -20,16 +20,10 @@ const Root = ({ Router, location, context, store }) => (
   </Provider>
 );
 
-Root.propTypes = {
-  Router: PropTypes.func.isRequired,
+Root.propTypes = { Router: PropTypes.func.isRequired,
   location: PropTypes.string,
-  context: PropTypes.shape({
-    url: PropTypes.string,
-  }),
-  store: PropTypes.shape({
-    dispatch: PropTypes.func.isRequired,
-    getState: PropTypes.func.isRequired,
-  }).isRequired,
-};
+  context: PropTypes.shape({ url: PropTypes.string }),
+  store: PropTypes.shape({ dispatch: PropTypes.func.isRequired,
+    getState: PropTypes.func.isRequired }).isRequired };
 
 export default hot(module)(Root);

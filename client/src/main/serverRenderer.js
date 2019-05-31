@@ -45,9 +45,7 @@ export default function serverRenderer() {
     );
 
     if (context.url) {
-      res.writeHead(302, {
-        Location: context.url,
-      });
+      res.writeHead(302, { Location: context.url });
       res.end();
       return;
     }

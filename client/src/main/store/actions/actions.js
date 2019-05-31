@@ -30,20 +30,11 @@ export const setChosenFilm = chosenFilm => ({ type: SET_CHOSEN_FILM,
   chosenFilm });
 
 
-export const fetchFilmsFromApi = (url, searchValue, searchParameter) => ({
-  type: FETCH_FILMS,
-  payload: {
-    url,
+export const fetchFilmsFromApi = (url, searchValue, searchParameter) => ({ type: FETCH_FILMS,
+  payload: { url,
     searchValue,
-    searchParameter
-  }
-});
-export const searchFilms = (value, films, searchParameter) => ({
-  type: SEARCH_FILMS,
-  payload: {
-    value,
+    searchParameter } });
+export const searchFilms = (value, films, searchParameter) => ({ type: SEARCH_FILMS,
+  payload: { value,
     films,
-    searchParameter
-  }
-});
-
+    searchParameter } });

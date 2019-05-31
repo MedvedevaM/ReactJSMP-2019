@@ -1,5 +1,11 @@
 import { call, put, all, takeLatest } from 'redux-saga/effects';
-import { FETCH_FILMS, SEARCH_FILMS, setFilms, searchFilms, setFoundFilms, setQuantityOfFilms, setSearchValue } from '../actions/actions';
+import { FETCH_FILMS,
+  SEARCH_FILMS,
+  setFilms,
+  searchFilms,
+  setFoundFilms,
+  setQuantityOfFilms,
+  setSearchValue } from '../actions/actions';
 import { callApi, checkMatching } from '../utils/utils.js';
 
 function* watchGetFilms() {
@@ -25,21 +31,22 @@ export function* fetchFilms({ payload: { url, searchValue, searchParameter } }) 
 }
 
 export function* handleSearchFilms({ payload: { value, films, searchParameter } }) {
-  films = filterBySearchParameter(value, films, searchParameter);
+  const preparedFilms = filterBySearchParameter(value, films, searchParameter);
 
-  yield put(setFoundFilms(films));
-  yield put(setQuantityOfFilms(films.length));
+  yield put(setFoundFilms(preparedFilms));
+  yield put(setQuantityOfFilms(preparedFilms.length));
 }
 
 function filterBySearchParameter(value, films, searchParameter) {
+  let filteredFilms = films;
   if (searchParameter === 'Title' && value) {
-    films = films.filter(film => checkMatching(value, film.title));
+    filteredFilms = films.filter(film => checkMatching(value, film.title));
   }
 
   if (searchParameter === 'Genre' && value) {
-    films = films.filter(film => film.genres.some(genre => checkMatching(value, genre)));
+    filteredFilms = films.filter(film => film.genres.some(genre => checkMatching(value, genre)));
   }
-  return films;
+  return filteredFilms;
 }
 
 function* appSaga() {
@@ -47,7 +54,6 @@ function* appSaga() {
     watchGetFilms(),
     watchSearchFilms(),
   ]);
-
 }
 
 export default appSaga;

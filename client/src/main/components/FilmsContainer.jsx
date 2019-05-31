@@ -5,9 +5,17 @@ import Genre from './Genre.jsx';
 import { getFilteredFilms } from '../store/reducers/selectors';
 
 export const FilmsContainer = (props) => {
-  const { films, quantityOfFilms, chooseFilm, chosenFilm, sortBy, onSortParameterClick, filteredFilms, foundFilms } = props;
+  const { films,
+    quantityOfFilms,
+    chooseFilm, chosenFilm,
+    sortBy,
+    onSortParameterClick,
+    filteredFilms,
+    foundFilms } = props;
   if (chosenFilm && films) {
-    const formattedFilms = filteredFilms.map(film => <Film key={film.id} chooseFilm={chooseFilm} {...film} />);
+    const formattedFilms = filteredFilms.map(film => (
+      <Film key={film.id} chooseFilm={chooseFilm} {...film} />
+    ));
     return (
       <>
         <div className="search-results">
@@ -23,7 +31,8 @@ export const FilmsContainer = (props) => {
     );
   }
 
-  const formattedFilms = foundFilms ? foundFilms.map(film => <Film key={film.id} chooseFilm={chooseFilm} {...film} />) : null;
+  const formattedFilms = foundFilms ? foundFilms.map(film => (
+    <Film key={film.id} chooseFilm={chooseFilm} {...film} />)) : null;
   return (
     <>
       <div className="search-results">
@@ -35,9 +44,19 @@ movies found
           </p>
           <div onClick={onSortParameterClick} className="flex sorter">
             <p>Sort by</p>
-            <ul onClick={onSortParameterClick} className="flex sorter">
-              <li data-sort-parameter="release date" className={sortBy === 'release date' ? 'chosen-sort-parameter' : ''}>release date</li>
-              <li data-sort-parameter="rating" className={sortBy === 'rating' ? 'chosen-sort-parameter' : ''}>rating</li>
+            <ul className="flex sorter">
+              <li
+                data-sort-parameter="release date"
+                className={sortBy === 'release date' ? 'chosen-sort-parameter' : ''}
+              >
+                release date
+              </li>
+              <li
+                data-sort-parameter="rating"
+                className={sortBy === 'rating' ? 'chosen-sort-parameter' : ''}
+              >
+rating
+              </li>
             </ul>
           </div>
         </div>

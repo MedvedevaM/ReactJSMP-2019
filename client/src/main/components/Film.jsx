@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import Genre from './Genre.jsx';
 
 const Film = (props) => {
-  const { poster_path, title, genres, release_date, id } = props;
-  const releaseYear = release_date ? release_date.slice(0, 4) : null;
+  const { poster_path: posterPath, title, genres, release_date: releaseDate, id } = props;
+  const releaseYear = releaseDate ? releaseDate.slice(0, 4) : null;
   return (
     <FilmWrapper>
       <NavLink to={`/film/${id}`}>
-        <FilmImage data-film-id={id} src={poster_path} alt={title} />
+        <FilmImage data-film-id={id} src={posterPath} alt={title} />
       </NavLink>
       <FilmInfoWrapper>
         <NavLink to={`/film/${id}`}>

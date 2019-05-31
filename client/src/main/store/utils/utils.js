@@ -1,13 +1,13 @@
 import fetch from 'node-fetch';
 
 export function checkMatching(searchValue, string) {
-  searchValue = searchValue.toLowerCase().trim();
-  string = string.toLowerCase().trim();
-  const searchValueLength = searchValue.length;
-  const stringLength = string.length;
+  const preparedSearchValue = searchValue.toLowerCase().trim();
+  const preparedString = string.toLowerCase().trim();
+  const searchValueLength = preparedSearchValue.length;
+  const stringLength = preparedString.length;
   if (searchValueLength <= stringLength) {
     for (let i = 0; i < searchValueLength; i++) {
-      if (searchValue[i] !== string[i]) {
+      if (preparedSearchValue[i] !== preparedString[i]) {
         return false;
       }
     }
@@ -33,13 +33,12 @@ export function debounce(f, ms) {
   };
 }
 
-export const callApi = url =>
-  fetch(url)
-    .then(
-      response => response.json(),
-      error => Promise.reject(error),
-    )
-    .then(
-      data => ({ data }),
-      error => ({ error }),
-    )
+export const callApi = url => fetch(url)
+  .then(
+    response => response.json(),
+    error => Promise.reject(error),
+  )
+  .then(
+    data => ({ data }),
+    error => ({ error }),
+  );

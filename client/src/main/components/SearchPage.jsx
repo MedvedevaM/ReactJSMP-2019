@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setSearchParameter, setSortParameter, setChosenFilm, fetchFilmsFromApi, setSearchValue, searchFilms } from '../store/actions/actions';
-import { getFilms, getChosenFilm, getFilmsQuantity, getSearchParameter, getSortParameter, getSearchValue, getFoundFilms } from '../store/reducers/selectors';
+import { setSearchParameter,
+  setSortParameter,
+  setChosenFilm,
+  fetchFilmsFromApi,
+  setSearchValue,
+  searchFilms } from '../store/actions/actions';
+import { getFilms,
+  getChosenFilm,
+  getFilmsQuantity,
+  getSearchParameter,
+  getSortParameter,
+  getFoundFilms } from '../store/reducers/selectors';
 import { debounce } from '../store/utils/utils';
 import FilmsContainer from './FilmsContainer.jsx';
 import FilmSearch from './FilmSearch.jsx';
@@ -85,6 +95,12 @@ export const mapStateToProps = (store, ownProps) => ({ films: getFilms(store.fil
   sortBy: getSortParameter(store),
   foundFilms: getFoundFilms(store) });
 
-export const mapDispatchToProps = { setSearchParameter, setSearchValue, setSortParameter, setChosenFilm, fetchFilmsFromApi, getFilms, searchFilms };
+export const mapDispatchToProps = { setSearchParameter,
+  setSearchValue,
+  setSortParameter,
+  setChosenFilm,
+  fetchFilmsFromApi,
+  getFilms,
+  searchFilms };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);

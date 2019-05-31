@@ -46,5 +46,7 @@ export function getFilteredFilms(store) {
 }
 
 export function filterFilmsByGenre(films, neededGenres) {
-  return films.filter(film => film.genres.some(genre => neededGenres.some(neededGenre => genre === neededGenre)));
+  return films.filter(film => film.genres.some(
+    genre => neededGenres.some(neededGenre => genre === neededGenre),
+  ));
 }
