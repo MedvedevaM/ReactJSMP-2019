@@ -13,7 +13,14 @@ const RadioButtons = (props) => {
         defaultChecked={searchBy === parameter}
         onClick={onClick}
       />
-      <label data-parameter={parameter} className="uppercase bold" htmlFor={parameter}>{parameter}</label>
+      <label
+        data-parameter={parameter}
+        className="uppercase bold"
+        htmlFor={parameter}
+      >
+        {parameter}
+
+      </label>
     </React.Fragment>
   ));
   return (

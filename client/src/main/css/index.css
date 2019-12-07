@@ -1,12 +1,6 @@
-@font-face {
-    font-family: Arial;
-    src: url(fonts/arial.ttf);
-}
-
 body,
 header,
 p,
-h3,
 ul {
     margin: 0;
     padding: 0;
@@ -200,42 +194,6 @@ h1 {
     margin: 0 auto;
 }
 
-.film {
-    margin: 2.5rem;
-    width: 20rem;
-}
-
-.film img {
-    width: 20rem;
-    height: 30rem;
-    object-fit: fill;
-    cursor: pointer;
-}
-
-.film h3 {
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-.film div {
-    align-items: flex-start;
-    justify-content: space-between;
-}
-
-.film div,
-.film p {
-    padding: 1rem 0.5rem 0 0.5rem;
-}
-
-.release-year {
-    border: 1px solid black;
-    padding: 1px 6px;
-    margin: 0 2px 0 0;
-}
-
-.film p {
-    color: #828282;
-}
 
 footer {
     background-color: #4d4d4d;

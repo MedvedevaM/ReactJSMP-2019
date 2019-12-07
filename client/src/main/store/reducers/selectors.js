@@ -4,14 +4,14 @@ import { films } from './films';
 export const appReducer = combineReducers({ films });
 
 // Films selectors
-export function getFilms(films) {
-  if (films.sortBy === 'rating') {
-    return films.films.sort((a, b) => b.vote_average - a.vote_average);
+export function getFilms(state) {
+  if (state.sortBy === 'rating') {
+    return state.films.sort((a, b) => b.vote_average - a.vote_average);
   }
-  if (films.sortBy === 'release date') {
-    return films.films.sort((a, b) => b.release_date.slice(0, 4) - a.release_date.slice(0, 4));
+  if (state.sortBy === 'release date') {
+    return state.films.sort((a, b) => b.release_date.slice(0, 4) - a.release_date.slice(0, 4));
   }
-  return films.films;
+  return state.films;
 }
 
 export function getFilmsQuantity(store) {
@@ -46,5 +46,7 @@ export function getFilteredFilms(store) {
 }
 
 export function filterFilmsByGenre(films, neededGenres) {
-  return films.filter(film => film.genres.some(genre => neededGenres.some(neededGenre => genre === neededGenre)));
+  return films.filter(film => film.genres.some(
+    genre => neededGenres.some(neededGenre => genre === neededGenre),
+  ));
 }
